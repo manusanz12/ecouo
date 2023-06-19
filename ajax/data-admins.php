@@ -52,7 +52,7 @@ class DatatableController{
            	Búsqueda de datos
             =============================================*/	
 
-            $select = "id_user,matricula_user,name_user,ap_user,am_user,email_user,id_role_user,id_campus_user,method_user,date_created_user,picture_user,id_role,name_role,id_campus,name_campus";
+            $select = "id_user,matricula_user,name_user,ap_user,am_user,email_user,id_role_user,id_campus_user,estatus_user,method_user,date_created_user,picture_user,id_role,name_role,id_campus,name_campus";
 
             if(!empty($_POST['search']['value'])){
 
@@ -142,31 +142,39 @@ class DatatableController{
 	            	$actions = "";
 	            	
             	}else{
+					$picture_user = "<img src='".TemplateController::returnImg($value->id_user,$value->picture_user,$value->method_user)."' class='img-circle' style='width:70px'>";
+					if($value->estatus_user!=2){	
+							
+							$actions ="<a class='btn btn-success btn-sm rounded-circle stopItem' idstopItem='".base64_encode($value->id_user."~".$_GET["token"])."' table='users' suffix='user' page='admins'>
 
+										<i class='fas fa-eye'></i>
 
-            	    $picture_user = "<img src='".TemplateController::returnImg($value->id_user,$value->picture_user,$value->method_user)."' class='img-circle' style='width:70px'>";
+										</a>
+										";
+					}
+					else{
+							$actions ="<a class='btn btn-secondary btn-sm rounded-circle activeItem' idactiveItem='".base64_encode($value->id_user."~".$_GET["token"])."' table='users' suffix='user' page='admins'>
 
-            		$actions ="<a class='btn btn-success btn-sm rounded-circle removeItem' idItem='".base64_encode($value->id_user."~".$_GET["token"])."' table='users' suffix='user' deleteFile='users/".$value->id_user."/".$value->picture_user."' page='admins'>
+										<i class='fas fa-eye-slash'></i>
 
-			            		<i class='fas fa-eye'></i>
+										</a>
+										";
+					}					
+							$actions .= "<a href='/admins/edit/".base64_encode($value->id_user."~".$_GET["token"])."' class='btn btn-warning btn-sm mr-1 rounded-circle'>
+							
+										<i class='fas fa-pencil-alt'></i>
 
-			            		</a>
-								";
-					$actions .= "<a href='/admins/edit/".base64_encode($value->id_user."~".$_GET["token"])."' class='btn btn-warning btn-sm mr-1 rounded-circle'>
-					
-			            		<i class='fas fa-pencil-alt'></i>
+										</a>
 
-			            		</a>
+										<a class='btn btn-danger btn-sm rounded-circle removeItem' idItem='".base64_encode($value->id_user."~".$_GET["token"])."' table='users' suffix='user' deleteFile='users/".$value->id_user."/".$value->picture_user."' page='admins'>
 
-			            		<a class='btn btn-danger btn-sm rounded-circle removeItem' idItem='".base64_encode($value->id_user."~".$_GET["token"])."' table='users' suffix='user' deleteFile='users/".$value->id_user."/".$value->picture_user."' page='admins'>
+										<i class='fas fa-trash'></i>
 
-			            		<i class='fas fa-trash'></i>
+										</a>";
 
-			            		</a>";
+							
 
-					
-
-			        $actions = TemplateController::htmlClean($actions);
+							$actions = TemplateController::htmlClean($actions);
             	}	
 
 

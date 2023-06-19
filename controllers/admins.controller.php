@@ -359,7 +359,7 @@ class AdminsController{
 						Agrupamos la información 
 						=============================================*/		
 
-						$data = "name_user=".trim(TemplateController::capitalize($_POST["name"]))."&ap_user=".trim(TemplateController::capitalize($_POST["ap"]))."&am_user=".trim(TemplateController::capitalize($_POST["am"]))."&emailpersonal_user=".trim(strtolower($_POST["email_personal"]))."&email_user=".trim(strtolower($_POST["email"]))."&id_campus_user=".trim($_POST["campus"])."&password_user=".$password."&date_updated_user=".date("Y-m-d")."&picture_user=".$picture;
+						$data = "name_user=".trim(TemplateController::capitalize($_POST["name"]))."&ap_user=".trim(TemplateController::capitalize($_POST["ap"]))."&am_user=".trim(TemplateController::capitalize($_POST["am"]))."&emailpersonal_user=".trim(strtolower($_POST["email_personal"]))."&email_user=".trim(strtolower($_POST["email"]))."&id_campus_user=".trim($_POST["campus"])."&password_user=".$password."&date_updated_user=".date("Y-m-d H:i:s")."&picture_user=".$picture;
 
 						$data_user="address_datauser=".trim($_POST["address"])."&phone_datauser=".trim($_POST["phone"])."&movil_datauser=".trim($_POST["movil"])."&postalcode_datauser=".trim($_POST["postalcode"])."&sex_datauser=".trim($_POST["tipo_sexo"])."&tiposangre_datauser=".trim($_POST["tsangre"])."&pais_datauser=".trim($_POST["country"])."&state_datauser=".trim(TemplateController::capitalize($_POST["state"]))."&town_datauser=".trim(TemplateController::capitalize($_POST["town"]))."&nationality_datauser=".trim(TemplateController::capitalize($_POST["nationality"]));
 
