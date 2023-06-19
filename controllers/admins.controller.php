@@ -187,7 +187,7 @@ class AdminsController{
 						/***************** tabla datauser  **************/
 						$data2 = array(
 
-							"id_user_datauser" => $id
+							"id_datauser" => $id
 
 						);
 							
@@ -374,7 +374,7 @@ class AdminsController{
 
 						$response = CurlController::request($url,$method,$fields);
 
-						$url_2 = "datausers?id=".$id."&nameId=id_user_datauser&token=".$_SESSION["admin"]->token_user."&table=users&suffix=user";
+						$url_2 = "datausers?id=".$id."&nameId=id_datauser&token=".$_SESSION["admin"]->token_user."&table=users&suffix=user";
 						$method_2 = "PUT";
 						$fields_2 = $data_user;
 

@@ -8,9 +8,9 @@
 	
 		if($security[1] == $_SESSION["admin"]->token_user){
 
-			$select = "id_user,matricula_user,name_user,ap_user,am_user,emailpersonal_user,email_user,picture_user,id_role_user,id_campus_user,id_role,name_role,id_campus,name_campus";
+			$select = "id_user,matricula_user,name_user,ap_user,am_user,emailpersonal_user,email_user,picture_user,id_datauser,phone_datauser,movil_datauser,address_datauser,postalcode_datauser,sex_datauser,tiposangre_datauser,pais_datauser,state_datauser,town_datauser,age_datauser,nationality_datauser,id_role_user,id_campus_user,id_role,name_role,id_campus,name_campus";
 
-			$url = "relations?rel=users,roles,campuses&type=user,role,campus&select=".$select."&linkTo=id_user&equalTo=".$security[0];
+			$url = "relations?rel=users,datausers,roles,campuses&type=user,datauser,role,campus&select=".$select."&linkTo=id_user&equalTo=".$security[0];
 			$method = "GET";
 			$fields = array();
 
@@ -22,20 +22,6 @@
 				
 
 
-				$select_2 = "id_user_datauser,phone_datauser,movil_datauser,sex_datauser,address_datauser,postalcode_datauser,sex_datauser,tiposangre_datauser,birth_certificate_datauser,pais_datauser,state_datauser,town_datauser,age_datauser,nationality_datauser,id_user,matricula_user,name_user,email_user";
-
-				$url_2 = "relations?rel=datausers,users&type=datauser,user&select=".$select_2."&linkTo=id_user_datauser&equalTo=".$security[0];
-				$method_2 = "GET";
-				$fields_2 = array();
-
-				$response_2 = CurlController::request($url_2,$method_2,$fields_2);
-
-				if($response_2->status == 200){
-					
-					$admin_personal = $response_2->results[0];
-										
-
-				}	
 
 			}else{
 
@@ -350,7 +336,7 @@
 						pattern="[-\\(\\)\\0-9 ]{1,}"
 						onchange="validateJS(event,'phone')"
 						name="phone"
-						value="<?php echo $admin_personal->phone_datauser?>"
+						value="<?php echo $admin->phone_datauser?>"
 						>
 
 					</div>
@@ -380,7 +366,7 @@
 						pattern="[-\\(\\)\\0-9 ]{1,}"
 						onchange="validateJS(event,'phone')"
 						name="movil"
-						value="<?php echo $admin_personal->movil_datauser?>"
+						value="<?php echo $admin->movil_datauser?>"
 						>
 
 					</div>
@@ -409,7 +395,7 @@
 						
 						
 						<?php foreach ($tipo_sexo as $key => $value):?>
-							<?php if ($value["code"]== $admin_personal->sex_datauser): ?>
+							<?php if ($value["code"]== $admin->sex_datauser): ?>
 								<option value="<?php echo $value["code"] ?>" selected><?php echo $value["name"] ?></option>
 							<?php endif; ?>		
 								<option value="<?php echo $value["code"] ?>"><?php echo $value["name"] ?></option>
@@ -437,7 +423,7 @@
 					pattern='[-\\(\\)\\=\\%\\&\\$\\;\\_\\*\\"\\#\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]{1,}'
 					onchange="validateJS(event,'regex')"
 					name="address"
-					value="<?php echo $admin_personal->address_datauser ?>"
+					value="<?php echo $admin->address_datauser ?>"
 					>
 
 					<div class="valid-feedback">Valido.</div>
@@ -465,7 +451,7 @@
 						pattern="[-\\(\\)\\0-9 ]{1,}"
 						onchange="validateJS(event,'phone')"
 						name="postalcode"
-						value="<?php echo $admin_personal->postalcode_datauser?>"
+						value="<?php echo $admin->postalcode_datauser?>"
 						>
 
 					</div>
@@ -489,7 +475,7 @@
 					pattern='[-\\(\\)\\=\\%\\&\\$\\;\\_\\*\\"\\#\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]{1,}'
 					onchange="validateJS(event,'regex')"
 					name="tsangre"
-					value="<?php echo $admin_personal->tiposangre_datauser ?>"
+					value="<?php echo $admin->tiposangre_datauser ?>"
 					>
 
 					<div class="valid-feedback">Valido.</div>
@@ -517,7 +503,7 @@
 						
 						<?php foreach ($countries as $key => $value): ?>
 
-							<?php if ($value["name"]== $admin_personal->pais_datauser): ?>
+							<?php if ($value["name"]== $admin->pais_datauser): ?>
 								<option value="<?php echo $value["name"] ?>" selected><?php echo $value["name"] ?></option>
 							<?php endif; ?>		
 
@@ -547,7 +533,7 @@
 					pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,}"
 					onchange="validateJS(event,'text')"
 					name="state"
-					value="<?php echo $admin_personal->state_datauser ?>" 
+					value="<?php echo $admin->state_datauser ?>" 
 					>
 
 					<div class="valid-feedback">Valido.</div>
@@ -569,7 +555,7 @@
 					pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,}"
 					onchange="validateJS(event,'text')"
 					name="town"
-					value="<?php echo $admin_personal->town_datauser ?>" 
+					value="<?php echo $admin->town_datauser ?>" 
 					>
 
 					<div class="valid-feedback">Valido.</div>
@@ -591,7 +577,7 @@
 					pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,}"
 					onchange="validateJS(event,'text')"
 					name="nationality"
-					value="<?php echo $admin_personal->nationality_datauser ?>" 
+					value="<?php echo $admin->nationality_datauser ?>" 
 					>
 
 					<div class="valid-feedback">Valido.</div>
