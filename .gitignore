@@ -1,0 +1,4 @@
+.htaccess
+php_error_log
+views/assets/
+extensions/
