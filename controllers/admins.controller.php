@@ -51,7 +51,7 @@ class AdminsController{
 					=============================================*/	
 
 					
-					if($response->results[0]->id_rol_user != "10"){
+					if($response->results[0]->id_role_user != "10"){
 
 						echo ' <div class="alert alert-danger">You do not have permissions to access</div>';
 						return;
