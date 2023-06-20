@@ -27,7 +27,7 @@
 
 				echo '<script>
 
-				window.location = "/administrators";
+				window.location = "/teachers";
 
 				</script>';
 			}
@@ -36,7 +36,7 @@
 
 			echo '<script>
 
-			window.location = "/administrators";
+			window.location = "/teachers";
 
 			</script>';
 	
@@ -52,15 +52,15 @@
 
 	<form method="post" class="needs-validation" novalidate enctype="multipart/form-data">
 
-		<input type="hidden" value="<?php echo $admin->id_user ?>" name="idAdministrators"> 
+		<input type="hidden" value="<?php echo $admin->id_user ?>" name="idTeacher"> 
 	
 		<div class="card-header">
 
 			<?php
 
-			 	require_once "controllers/administrators.controller.php";
+			 	require_once "controllers/teachers.controller.php";
 
-				$create = new AdminsController();
+				$create = new TeachersController();
 				$create -> edit($admin->id_user);
 
 			?>
@@ -272,56 +272,7 @@
 		            </div>
 
 		        </div>
-				
-				<!--=====================================
-		        Rol
-		        ======================================-->
 
-		        <div class="form-group mt-2">
-		            
-		            <label>Rol<sup class="text-danger">*</sup></label>
-
-		            <?php 
-
-		            $url = "roles?select=id_role,name_role,area_role,estatus_role&linkTo=area_role,estatus_role&equalTo=administrativo,1";
-		            $method = "GET";
-		            $fields = array();
-
-		            $roles = CurlController::request($url, $method, $fields)->results; 
-
-		            ?>
-
-		            <div class="form-group my-4__content">
-		                
-		                <select
-		                class="form-control select2"
-		                name="role"
-		                style="width:100%"
-		                onchange="changeCategory(event)"
-		                required>
-		                   
-		                    <?php foreach ($roles as $key => $value): ?>
-
-			                    <?php if ($value->id_role == $admin->id_role_user): ?>
-
-			                    	<option value="<?php echo $admin->id_role_user ?>" selected><?php echo $value->name_role ?></option>
-
-			                    <?php else: ?>
-
-			                    	<option value="<?php echo $value->id_role ?>"><?php echo $value->name_role ?></option>
-		
-			                    <?php endif ?>	
-                  
-		                    <?php endforeach ?>
-
-		                </select> 
-
-		                <div class="valid-feedback">Valid.</div>
-            			<div class="invalid-feedback">Please fill out this field.</div>
-
-		            </div>
-
-		        </div>
 
 				<!--=====================================
                 Foto
@@ -644,7 +595,7 @@
 	
 				<div class="form-group mt-3">
 
-					<a href="/administrators" class="btn btn-light border text-left">Regresar</a>
+					<a href="/teachers" class="btn btn-light border text-left">Regresar</a>
 					
 					<button type="submit" class="btn bg-dark float-right">Guardar</button>
 
