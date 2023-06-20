@@ -52,3 +52,53 @@ if(isset($_POST["idactiveItem"])){
 	$validate -> dataActive();
 
 }
+
+class ActtivecatController{
+
+	public $idactivecatItem;
+	public $table;
+	public $suffix;
+	public $token;
+	
+
+	public function datacatActive(){
+
+		$security = explode("~",base64_decode($this->idactivecatItem));
+
+		
+		if($security[1] == $this->token){
+
+			
+			/*=============================================
+			activar registro
+			=============================================*/
+
+                $valor_activar=1;
+			
+				$url = $this->table."?id=".$security[0]."&nameId=id_".$this->suffix."&token=".$this->token."&table=users&suffix=user";
+				$method = "PUT";
+				$fields = 'estatus_campus='.$valor_activar;
+
+				$response = CurlController::request($url, $method, $fields);
+
+				echo $response->status;		
+
+		}else{
+
+			echo 404;
+		}
+
+	}
+
+}
+
+if(isset($_POST["idactivecatItem"])){
+
+	$validate = new ActtivecatController();
+	$validate -> idactivecatItem = $_POST["idactivecatItem"];
+	$validate -> table = $_POST["table"];
+	$validate -> suffix = $_POST["suffix"];
+	$validate -> token = $_POST["token"];
+	$validate -> datacatActive();
+
+}

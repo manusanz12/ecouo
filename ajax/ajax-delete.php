@@ -22,16 +22,15 @@ class DeleteController{
 			Validar primero que la categoría no tenga productos
 			=============================================*/
 				
-			if($this->table == "categories" || $this->table == "subcategories" || $this->table == "stores"){
+			if($this->table == "campuses" || $this->table == "subcategories" || $this->table == "stores"){
 
-				$url = "products?select=id_product&linkTo=id_".$this->suffix."_product&equalTo=".$security[0];
+				$url = "users?select=id_campus_user&linkTo=id_".$this->suffix."_user&equalTo=".$security[0];
 				$method = "GET";
 				$fields = array();
 
 				$response = CurlController::request($url, $method, $fields);
 
-
-				
+			
 				if($response->status == 200){
 
 					echo "no-delete";
@@ -132,5 +131,88 @@ if(isset($_POST["idItem"])){
 	$validate -> token = $_POST["token"];
 	$validate -> deleteFile = $_POST["deleteFile"];
 	$validate -> dataDelete();
+
+}
+
+class DeletecatController{
+
+	public $idcatItem;
+	public $table;
+	public $suffix;
+	public $token;
+	
+
+	public function datacatDelete(){
+
+		$security = explode("~",base64_decode($this->idcatItem));
+		
+		
+
+		if($security[1] == $this->token){
+			
+
+			/*=============================================
+			Validar primero que la categoría no tenga productos
+			=============================================*/
+			
+			if($this->table == "campuses"){
+
+				$url = "users?select=id_campus_user&linkTo=id_".$this->suffix."_user&equalTo=".$security[0];
+				$method = "GET";
+				$fields = array();
+
+				$response = CurlController::request($url, $method, $fields);
+				
+				
+				if($response->status == 200){
+
+					echo "no-delete";
+
+					return;
+
+				}
+			
+			}
+		
+
+			$picture ="ok";
+				
+			/*=============================================
+			Eliminar registro
+			=============================================*/
+
+				if($picture == "ok"){
+
+					$url = $this->table."?id=".$security[0]."&nameId=id_".$this->suffix."&token=".$this->token."&table=users&suffix=user";
+					$method = "DELETE";
+					$fields = array();
+
+					$response = CurlController::request($url, $method, $fields);
+					
+
+					if($response->status==200){
+											
+						echo $response->status;
+						
+					}
+				}
+
+			}else{
+
+				echo 404;
+			}
+
+	}
+
+}
+
+if(isset($_POST["idcatItem"])){
+
+	$validate = new DeletecatController();
+	$validate -> idcatItem = $_POST["idcatItem"];
+	$validate -> table = $_POST["table"];
+	$validate -> suffix = $_POST["suffix"];
+	$validate -> token = $_POST["token"];
+	$validate -> datacatDelete();
 
 }

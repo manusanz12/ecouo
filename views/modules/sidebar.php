@@ -71,6 +71,15 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="campuses" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "campuses"): ?>active<?php endif ?>">
+              <i class="nav-icon fas fa-school"></i>
+              <p>
+                Campus
+              </p>
+            </a>
+          </li>
+
          <li class="nav-item">
             <a href="/categories" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "categories"): ?>active<?php endif ?>">
               <i class="nav-icon fas fa-list"></i>
@@ -79,6 +88,8 @@
               </p>
             </a>
           </li>
+
+          
 
           <li class="nav-item">
             <a href="/subcategories" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "subcategories"): ?>active<?php endif ?>">
