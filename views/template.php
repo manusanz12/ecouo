@@ -102,7 +102,8 @@ foreach ($routesArray as $key => $value) {
              $routesArray[1] == "students" ||
              $routesArray[1] == "campuses" ||
              $routesArray[1] == "roles" ||
-             $routesArray[1] == "programs"): ?>
+             $routesArray[1] == "programs" ||
+             $routesArray[1] == "periods"): ?>
      
         <!-- DataTables  & Plugins -->
         <link rel="stylesheet" href="views/assets/plugins/daterangepicker/daterangepicker.css">
@@ -184,6 +185,7 @@ foreach ($routesArray as $key => $value) {
          $routesArray[1] == "campuses" ||
          $routesArray[1] == "roles" ||
          $routesArray[1] == "programs" ||
+        $routesArray[1] == "periods" ||
          $routesArray[1] == "logout"){
 
         include "views/pages/".$routesArray[1]."/".$routesArray[1].".php";

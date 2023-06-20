@@ -97,6 +97,16 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="periods" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "periods"): ?>active<?php endif ?>">
+              <i class="nav-icon fas fa-clock"></i>
+              <p>
+                Periods
+              </p>
+            </a>
+          </li>
+
           <!--
          <li class="nav-item">
             <a href="/categories" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "categories"): ?>active<?php endif ?>">
