@@ -155,7 +155,7 @@ class DeletecatController{
 			Validar primero que la categoría no tenga productos
 			=============================================*/
 			
-			if($this->table == "campuses"){
+			if($this->table == "campuses" || $this->table == "roles"){
 
 				$url = "users?select=id_campus_user&linkTo=id_".$this->suffix."_user&equalTo=".$security[0];
 				$method = "GET";

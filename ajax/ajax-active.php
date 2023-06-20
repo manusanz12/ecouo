@@ -77,7 +77,7 @@ class ActtivecatController{
 			
 				$url = $this->table."?id=".$security[0]."&nameId=id_".$this->suffix."&token=".$this->token."&table=users&suffix=user";
 				$method = "PUT";
-				$fields = 'estatus_campus='.$valor_activar;
+				$fields = "estatus_".$this->suffix."=".$valor_activar;
 
 				$response = CurlController::request($url, $method, $fields);
 

@@ -80,6 +80,15 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="roles" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "roles"): ?>active<?php endif ?>">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Roles
+              </p>
+            </a>
+          </li>
+          <!--
          <li class="nav-item">
             <a href="/categories" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "categories"): ?>active<?php endif ?>">
               <i class="nav-icon fas fa-list"></i>
@@ -169,7 +178,7 @@
               </p>
             </a>
           </li>
-
+                 -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
