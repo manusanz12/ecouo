@@ -88,6 +88,15 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="programs" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "programs"): ?>active<?php endif ?>">
+              <i class="nav-icon fas fa-award"></i>
+              <p>
+                Programas
+              </p>
+            </a>
+          </li>
           <!--
          <li class="nav-item">
             <a href="/categories" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "categories"): ?>active<?php endif ?>">

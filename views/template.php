@@ -101,16 +101,8 @@ foreach ($routesArray as $key => $value) {
              $routesArray[1] == "teachers" ||
              $routesArray[1] == "students" ||
              $routesArray[1] == "campuses" ||
-             $routesArray[1] == "roles" 
-             //$routesArray[1] == "users" ||
-             //$routesArray[1] == "stores" ||
-             //$routesArray[1] == "categories" ||
-             //$routesArray[1] == "subcategories" ||
-             //$routesArray[1] == "products" ||
-             //$routesArray[1] == "orders" ||
-             //$routesArray[1] == "sales" ||
-             //$routesArray[1] == "disputes" ||
-             /*$routesArray[1] == "messages"*/): ?>
+             $routesArray[1] == "roles" ||
+             $routesArray[1] == "programs"): ?>
      
         <!-- DataTables  & Plugins -->
         <link rel="stylesheet" href="views/assets/plugins/daterangepicker/daterangepicker.css">
@@ -191,15 +183,7 @@ foreach ($routesArray as $key => $value) {
          $routesArray[1] == "students" ||
          $routesArray[1] == "campuses" ||
          $routesArray[1] == "roles" ||
-             //$routesArray[1] == "users" ||
-             //$routesArray[1] == "stores" ||
-             //$routesArray[1] == "categories" ||
-             //$routesArray[1] == "subcategories" ||
-             //$routesArray[1] == "products" ||
-             //$routesArray[1] == "orders" ||
-             //$routesArray[1] == "sales" ||
-             //$routesArray[1] == "disputes" ||
-             /*$routesArray[1] == "messages"*/
+         $routesArray[1] == "programs" ||
          $routesArray[1] == "logout"){
 
         include "views/pages/".$routesArray[1]."/".$routesArray[1].".php";
