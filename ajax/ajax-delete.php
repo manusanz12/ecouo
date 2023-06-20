@@ -29,6 +29,8 @@ class DeleteController{
 				$fields = array();
 
 				$response = CurlController::request($url, $method, $fields);
+
+
 				
 				if($response->status == 200){
 
@@ -102,7 +104,7 @@ class DeleteController{
 				$response = CurlController::request($url, $method, $fields);
 
 				if($response->status==200){
-					$url_2 = "datausers?id=".$security[0]."&nameId=id_user_datauser&token=".$this->token."&table=users&suffix=user";
+					$url_2 = "datausers?id=".$security[0]."&nameId=id_datauser&token=".$this->token."&table=users&suffix=user";
 					$method_2 = "DELETE";
 					$fields_2 = array();
 

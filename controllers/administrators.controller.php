@@ -2,109 +2,6 @@
 
 class AdminsController{
 
-	/*=============================================
-	Login de administradores
-	=============================================*/	
-
-	public function login(){
-
-		if(isset($_POST["loginEmail"])){
-
-			//////////// animación de carga de inicio ///////////////////////
-			echo '<script>
-
-				matPreloader("on");
-				fncSweetAlert("loading", "Loading...", "");
-
-			</script>';
-
-			//////////// fin animación de carga de inicio ///////////////////////
-
-			/*=============================================
-			Validamos la sintaxis de los campos
-			=============================================*/	
-
-			if(preg_match('/^[.a-zA-Z0-9_]+([.][.a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["loginEmail"] )){
-
-
-				$url = "users?login=true&suffix=user";
-				$method = "POST";
-				$fields = array(
-
-					"email_user" => $_POST["loginEmail"],
-					"password_user" => $_POST["loginPassword"]
-
-				);
-
-				$response = CurlController::request($url,$method,$fields);
-
-				
-
-				/*=============================================
-				Validamos que si escriba correctamente los datos
-				=============================================*/	
-				
-				if($response->status == 200){
-
-					/*=============================================
-					Validamos que si tenga rol administrativo
-					=============================================*/	
-
-					
-					if($response->results[0]->id_role_user != "10"){
-
-						echo ' <div class="alert alert-danger">You do not have permissions to access</div>';
-						return;
-					}
-
-
-					/*=============================================
-					Creamos variable de sesión
-					=============================================*/	
-
-					$_SESSION["admin"] = $response->results[0];
-					
-					echo '<script>
-
-					fncFormatInputs();
-
-					localStorage.setItem("token_user", "'.$response->results[0]->token_user.'");
-
-					window.location = "'.$_SERVER["REQUEST_URI"].'"
-
-					</script>';
-
-
-				}else{
-
-					echo '<script>
-
-						fncFormatInputs();
-						matPreloader("off");
-						fncSweetAlert("close", "", "");
-				
-					</script> 
-					<div class="alert alert-danger">'.$response->results.'</div>';
-
-				}
-
-			}else{
-
-				echo '<script>
-
-						fncFormatInputs();
-						matPreloader("off");
-						fncSweetAlert("close", "", "");
-				
-					</script> 
-
-				 <div class="alert alert-danger">Field syntax error</div>';
-
-			}		
-
-		}
-
-	}
 
 	/*=============================================
 	Creación administradores
@@ -145,7 +42,7 @@ class AdminsController{
 					"am_user" => trim(TemplateController::capitalize($_POST["am"])),
 					"emailpersonal_user" => trim(strtolower($_POST["email_personal"])),
 					"email_user" => trim(strtolower($_POST["email"])),
-					"id_role_user" => "10",
+					"id_role_user" => trim($_POST["role"]),
 					"id_campus_user" => trim($_POST["campus"]),
 					"password_user" =>  trim($_POST["password"]),
 					"estatus_user" => 1,
@@ -239,7 +136,7 @@ class AdminsController{
 									fncFormatInputs();
 									matPreloader("off");
 									fncSweetAlert("close", "", "");
-									fncSweetAlert("success", "Your records were created successfully", "/admins");
+									fncSweetAlert("success", "Your records were created successfully", "/administrators");
 
 								</script>';
 
@@ -286,7 +183,7 @@ class AdminsController{
 
 	public function edit($id){
 
-		if(isset($_POST["idAdmin"])){
+		if(isset($_POST["idAdministrators"])){
 
 			echo '<script>
 
@@ -295,9 +192,9 @@ class AdminsController{
 
 			</script>';
 
-			if($id == $_POST["idAdmin"]){
+			if($id == $_POST["idAdministrators"]){
 
-				$select = "id_user,matricula_user,name_user,ap_user,am_user,emailpersonal_user,email_user,picture_user,id_campus_user,password_user";
+				$select = "id_user,matricula_user,name_user,ap_user,am_user,emailpersonal_user,email_user,picture_user,id_role_user,id_campus_user,password_user";
 
 				$url = "users?select=".$select."&linkTo=id_user&equalTo=".$id;
 				$method = "GET";
@@ -359,7 +256,7 @@ class AdminsController{
 						Agrupamos la información 
 						=============================================*/		
 
-						$data = "name_user=".trim(TemplateController::capitalize($_POST["name"]))."&ap_user=".trim(TemplateController::capitalize($_POST["ap"]))."&am_user=".trim(TemplateController::capitalize($_POST["am"]))."&emailpersonal_user=".trim(strtolower($_POST["email_personal"]))."&email_user=".trim(strtolower($_POST["email"]))."&id_campus_user=".trim($_POST["campus"])."&password_user=".$password."&date_updated_user=".date("Y-m-d H:i:s")."&picture_user=".$picture;
+						$data = "name_user=".trim(TemplateController::capitalize($_POST["name"]))."&ap_user=".trim(TemplateController::capitalize($_POST["ap"]))."&am_user=".trim(TemplateController::capitalize($_POST["am"]))."&emailpersonal_user=".trim(strtolower($_POST["email_personal"]))."&email_user=".trim(strtolower($_POST["email"]))."&id_role_user=".trim($_POST["role"])."&id_campus_user=".trim($_POST["campus"])."&password_user=".$password."&date_updated_user=".date("Y-m-d H:i:s")."&picture_user=".$picture;
 
 						$data_user="address_datauser=".trim($_POST["address"])."&phone_datauser=".trim($_POST["phone"])."&movil_datauser=".trim($_POST["movil"])."&postalcode_datauser=".trim($_POST["postalcode"])."&sex_datauser=".trim($_POST["tipo_sexo"])."&tiposangre_datauser=".trim($_POST["tsangre"])."&pais_datauser=".trim($_POST["country"])."&state_datauser=".trim(TemplateController::capitalize($_POST["state"]))."&town_datauser=".trim(TemplateController::capitalize($_POST["town"]))."&nationality_datauser=".trim(TemplateController::capitalize($_POST["nationality"]));
 
@@ -392,7 +289,7 @@ class AdminsController{
 								fncFormatInputs();
 								matPreloader("off");
 								fncSweetAlert("close", "", "");
-								fncSweetAlert("success", "Your records were created successfully", "/admins");
+								fncSweetAlert("success", "Your records were created successfully", "/administrators");
 
 							</script>';
 	

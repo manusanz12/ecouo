@@ -45,6 +45,15 @@
           </li>
 
           <li class="nav-item">
+            <a href="administrators" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "administrators"): ?>active<?php endif ?>">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Administrativos
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="/users" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "users"): ?>active<?php endif ?>">
               <i class="nav-icon fas fa-users"></i>
               <p>
