@@ -1,63 +1,29 @@
 <?php 
 
 /*=============================================
-total de productos
+total de Programs
 =============================================*/
 
-$url = "products?select=id_product&linkTo=approval_product&equalTo=approved";
+$url = "relations?rel=users,roles&type=user,role&select=id_user,matricula_user,name_user,email_user,id_role_user,id_campus_user,id_role,name_role,area_role&linkTo=area_role&equalTo=administrativo";
 $method = "GET";
 $fields = array();
-$products = CurlController::request($url,$method,$fields); 
+$admons = CurlController::request($url,$method,$fields); 
 
-if($products->status == 200){ 
+if($admons->status == 200){ 
 
-  $products = $products->total;
+  $admons = $admons->total;
 
 }else{
 
-$products = 0;
+$admons = 0;
 
 } 
 
 /*=============================================
-total de tiendas
+total de bajas de estudiantes
 =============================================*/
-$url = "stores?select=id_store";
-$stores = CurlController::request($url,$method,$fields);
-
-if($stores->status == 200){ 
-
-$stores = $stores->total;
-
-}else{
-
-$stores = 0;
-
-}  
-
-
-/*=============================================
-total de ventas
-=============================================*/ 
-
-$url = "sales?select=id_sale&linkTo=status_sale&equalTo=ok";
-$sales = CurlController::request($url,$method,$fields); 
-
-if($sales->status == 200){ 
-
-$sales = $sales->total;
-
-}else{
-
-$sales = 0;
-
-} 
-
-/*=============================================
-total de usuarios
-=============================================*/
-$url = "users?select=id_user&linkTo=rol_user&equalTo=default";
-$users = CurlController::request($url,$method,$fields);  
+$url = "users?select=id_user,id_role_user,estatus_user&linkTo=id_role_user,estatus_user&equalTo=1,2";
+$users = CurlController::request($url,$method,$fields);
 
 if($users->status == 200){ 
 
@@ -67,6 +33,40 @@ $users = $users->total;
 
 $users = 0;
 
+}  
+
+
+/*=============================================
+total de estudiantes activos
+=============================================*/ 
+
+$url = "users?select=id_user,id_role_user,estatus_user&linkTo=id_role_user,estatus_user&equalTo=1,1";
+$usersok = CurlController::request($url,$method,$fields); 
+
+if($usersok->status == 200){ 
+
+$usersok = $usersok->total;
+
+}else{
+
+$usersok = 0;
+
+} 
+
+/*=============================================
+total de usuarios
+=============================================*/
+$url = "users?select=id_user,id_role_user,estatus_user&linkTo=id_role_user,estatus_user&equalTo=2,1";
+$teachers = CurlController::request($url,$method,$fields);  
+
+if($teachers->status == 200){ 
+
+$teachers = $teachers->total;
+
+}else{
+
+$teachers = 0;
+
 } 
 
 ?>
@@ -75,12 +75,12 @@ $users = 0;
 <div class="row">
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box">
-      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-shopping-bag"></i></span>
+      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Products</span>
+        <span class="info-box-text">Administrativo activos</span>
         <span class="info-box-number">
-          <?php echo $products ?>
+          <?php echo $admons ?>
         </span>
       </div>
       <!-- /.info-box-content -->
@@ -93,8 +93,8 @@ $users = 0;
       <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-store"></i></span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Stores</span>
-        <span class="info-box-number"><?php echo $stores ?></span>
+        <span class="info-box-text">Bajas de estudiantes</span>
+        <span class="info-box-number"><?php echo $users ?></span>
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -110,8 +110,8 @@ $users = 0;
       <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Sales</span>
-        <span class="info-box-number"><?php echo $sales ?></span>
+        <span class="info-box-text">Estudiantes activos</span>
+        <span class="info-box-number"><?php echo $usersok ?></span>
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -123,8 +123,8 @@ $users = 0;
       <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Users</span>
-        <span class="info-box-number"><?php echo $users ?></span>
+        <span class="info-box-text">Docentes activos</span>
+        <span class="info-box-number"><?php echo $teachers ?></span>
       </div>
       <!-- /.info-box-content -->
     </div>
