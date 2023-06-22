@@ -39,7 +39,7 @@
             <a href="admins" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "admins"): ?>active<?php endif ?>">
               <i class="nav-icon fas fa-tasks"></i>
               <p>
-                Admins
+                Super Admins
               </p>
             </a>
           </li>
@@ -70,42 +70,60 @@
               </p>
             </a>
           </li>
-
           <li class="nav-item">
-            <a href="campuses" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "campuses"): ?>active<?php endif ?>">
-              <i class="nav-icon fas fa-school"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-circle"></i>
               <p>
-                Campus
+                Catálogos
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="campuses" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "campuses"): ?>active<?php endif ?>">
+                        <i class="nav-icon fas fa-school"></i>
+                        <p>
+                          Campus
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="roles" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "roles"): ?>active<?php endif ?>">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                          Roles
+                        </p>
+                      </a>
+                    </li>
+               
+                    <li class="nav-item">
+                      <a href="programs" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "programs"): ?>active<?php endif ?>">
+                        <i class="nav-icon fas fa-award"></i>
+                        <p>
+                          Programas
+                        </p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="periods" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "periods"): ?>active<?php endif ?>">
+                        <i class="nav-icon fas fa-clock"></i>
+                        <p>
+                          Periods
+                        </p>
+                      </a>
+                    </li>
+            </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="roles" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "roles"): ?>active<?php endif ?>">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Roles
-              </p>
-            </a>
-          </li>
 
-          <li class="nav-item">
-            <a href="programs" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "programs"): ?>active<?php endif ?>">
-              <i class="nav-icon fas fa-award"></i>
-              <p>
-                Programas
-              </p>
-            </a>
-          </li>
+          
 
-          <li class="nav-item">
-            <a href="periods" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "periods"): ?>active<?php endif ?>">
-              <i class="nav-icon fas fa-clock"></i>
-              <p>
-                Periods
-              </p>
-            </a>
-          </li>
+          
+
+          
+
+         
+         
 
           <!--
          <li class="nav-item">
