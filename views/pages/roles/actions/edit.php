@@ -136,6 +136,59 @@
 
                 	?>
 
+					<!--=====================================
+					Permiso de Rol
+					======================================-->
+
+					<?php
+
+						$m_superadmins = ""; 
+						$m_admins = ""; 
+						$m_students = ""; 
+						$m_teachers = ""; 
+						$m_catalogue = ""; 
+
+						if($roles->module_role != null){
+
+							foreach (json_decode($roles->module_role, true) as $key => $value) {
+
+								if(array_keys($value)[0] == "Super Admin"){
+
+									$m_superadmins = "checked";
+
+								}
+
+								if(array_keys($value)[0] == "Admins"){
+
+									$m_admins =  "checked";
+
+								}
+
+								if(array_keys($value)[0] == "Student"){
+
+									$m_students =  "checked";
+
+								}
+
+								if(array_keys($value)[0] == "Teacher"){
+
+									$m_teachers =  "checked";
+
+								}
+								if(array_keys($value)[0] == "Catalogue"){
+
+									$m_catalogue =  "checked";
+
+								}
+
+															
+							}
+
+
+						}
+
+					?>
+
 								
 				<div class="form-group mt-2">
 					
@@ -160,6 +213,37 @@
                       <input type="checkbox" class="custom-control-input" id="customDelete" name="p_delete" <?php echo $p_delete ?>>
                       <label class="custom-control-label" for="customDelete">Eliminar</label>
                     </div>
+
+				</div>
+
+				<div class="form-group mt-2">
+					
+					<label>Módulos</label>
+
+							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+							<input type="checkbox" class="custom-control-input" id="customSuperadmins" name="m_superadmins" <?php echo $m_superadmins ?>>
+							<label class="custom-control-label" for="customSuperadmins">Super Admins</label>
+							</div>
+
+							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+							<input type="checkbox" class="custom-control-input" id="customAdmins" name="m_admins" <?php echo $m_admins ?>>
+							<label class="custom-control-label" for="customAdmins">Administrativos</label>
+							</div>
+
+							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+							<input type="checkbox" class="custom-control-input" id="customStudent" name="m_students" <?php echo $m_students ?>>
+							<label class="custom-control-label" for="customStudent">Estudiantes</label>
+							</div>
+
+							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+							<input type="checkbox" class="custom-control-input" id="customTeacher" name="m_teachers" <?php echo $m_teachers ?>>
+							<label class="custom-control-label" for="customTeacher">Maestros</label>
+							</div>
+
+							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+							<input type="checkbox" class="custom-control-input" id="customCatalogue" name="m_catalogue" <?php echo $m_catalogue ?>>
+							<label class="custom-control-label" for="customCatalogue">Catálogos</label>
+							</div>
 
 				</div>
 

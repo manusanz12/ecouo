@@ -68,6 +68,56 @@ class RolesController{
 
                    
 				}
+
+				/*=============================================
+				Agrupamos los modulos en un json 
+				=============================================*/	
+
+                
+				$modulesuser = array();
+
+				if(isset($_POST["m_superadmins"])){	
+
+					array_push($modulesuser, ["Super Admin"=> "Super Admin"]);
+
+				}
+
+                if(isset($_POST["m_admins"])){	
+
+					array_push($modulesuser, ["Admins"=> "Admins"]);
+
+				}
+
+                if(isset($_POST["m_students"])){	
+
+					array_push($modulesuser, ["Student"=> "Estudiante"]);
+
+				}
+
+                if(isset($_POST["m_teachers"])){	
+
+					array_push($modulesuser, ["Teacher"=> "Teacher"]);
+
+				}
+
+				if(isset($_POST["m_catalogue"])){	
+
+					array_push($modulesuser, ["Catalogue"=> "Catálogos"]);
+
+				}
+
+
+				if(count($modulesuser) > 0){
+
+					$modulesuser = json_encode($modulesuser);
+                    
+
+				}else{
+
+					$modulesuser = null;
+
+                   
+				}
                 
 
 
@@ -81,6 +131,7 @@ class RolesController{
 
 					"name_role" => trim($_POST["name"]),
 					"permit_role" => $permisossuser,
+					"module_role" => $modulesuser,
 					"estatus_role" => 1,
 					"date_created_role" => date("Y-m-d")
 
@@ -220,12 +271,62 @@ class RolesController{
 							$permisossuser = null;
 						}
 
+						/*=============================================
+							Agrupamos los modulos en un json 
+							=============================================*/	
+
+							
+							$modulesuser = array();
+
+							if(isset($_POST["m_superadmins"])){	
+
+								array_push($modulesuser, ["Super Admin"=> "Super Admin"]);
+
+							}
+
+							if(isset($_POST["m_admins"])){	
+
+								array_push($modulesuser, ["Admins"=> "Admins"]);
+
+							}
+
+							if(isset($_POST["m_students"])){	
+
+								array_push($modulesuser, ["Student"=> "Estudiante"]);
+
+							}
+
+							if(isset($_POST["m_teachers"])){	
+
+								array_push($modulesuser, ["Teacher"=> "Maestro"]);
+
+							}
+
+							if(isset($_POST["m_catalogue"])){	
+
+								array_push($modulesuser, ["Catalogue"=> "Catálogos"]);
+
+							}
+
+
+							if(count($modulesuser) > 0){
+
+								$modulesuser = json_encode($modulesuser);
+								
+
+							}else{
+
+								$modulesuser = null;
+
+							
+							}
+
 
 					   	/*=============================================
 						Agrupamos la información 
 						=============================================*/		
 
-						$data = "name_role=".trim($_POST["name"])."&permit_role=".$permisossuser."&date_updated_role=".date("Y-m-d H:i:s");
+						$data = "name_role=".trim($_POST["name"])."&permit_role=".$permisossuser."&module_role=".$modulesuser."&date_updated_role=".date("Y-m-d H:i:s");
 
 									
 						/*=============================================

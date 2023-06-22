@@ -63,7 +63,8 @@ class AdminsController{
 					=============================================*/	
 
 					$_SESSION["admin"] = $response->results[0];
-					
+
+									
 					echo '<script>
 
 					fncFormatInputs();

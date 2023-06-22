@@ -55,6 +55,7 @@ if(isset($_GET["start"]) && isset($_GET["end"])){
         <th>#</th>
         <th>Nombre del Rol</th>
         <th>Permisos</th>
+        <th>Módulos</th>
         <th>Fecha</th>
         <th>Actions</th>
       </tr>

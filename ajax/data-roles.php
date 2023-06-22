@@ -29,7 +29,7 @@ class DatatableController{
             El total de registros de la data
             =============================================*/
             
-            $url = "roles?select=id_role,name_role,permit_role,estatus_role,date_created_role";
+            $url = "roles?select=id_role,name_role,permit_role,module_role,estatus_role,visible_role,date_created_role&linkTo=visible_role&equalTo=1";
 
 			$method = "GET";
 			$fields = array();
@@ -53,7 +53,7 @@ class DatatableController{
            	Búsqueda de datos
             =============================================*/	
 
-            $select = "id_role,name_role,permit_role,estatus_role,date_created_role";
+            $select = "id_role,name_role,permit_role,module_role,estatus_role,visible_role,date_created_role";
 
             if(!empty($_POST['search']['value'])){
 
@@ -65,7 +65,7 @@ class DatatableController{
 
 	            	foreach ($linkTo as $key => $value) {
 	            		
-	            		$url = "roles?&select=".$select."&linkTo=".$value."&search=".$search."&orderBy=".$orderBy."&orderMode=".$orderType."&startAt=".$start."&endAt=".$length;
+	            		$url = "roles?&select=".$select."&linkTo=".$value.",visible_role&search=".$search.",1&orderBy=".$orderBy."&orderMode=".$orderType."&startAt=".$start."&endAt=".$length;
 
                         
 	            		$data = CurlController::request($url,$method,$fields)->results;
@@ -100,7 +100,7 @@ class DatatableController{
 	            Seleccionar datos
 	            =============================================*/
 
-	            $url = "roles?&select=".$select."&linkTo=date_created_role&between1=".$_GET["between1"]."&between2=".$_GET["between2"]."&orderBy=".$orderBy."&orderMode=".$orderType."&startAt=".$start."&endAt=".$length;
+	            $url = "roles?&select=".$select."&linkTo=date_created_role&between1=".$_GET["between1"]."&between2=".$_GET["between2"]."&filterTo=visible_role&inTo=1&orderBy=".$orderBy."&orderMode=".$orderType."&startAt=".$start."&endAt=".$length;
 
 	            $data = CurlController::request($url,$method,$fields)->results;
 
@@ -183,6 +183,7 @@ class DatatableController{
             	$name_role = $value->name_role;
             	
                 $permit_role = "";
+				$module_role = "";
 
             	if($value->permit_role != null){
 
@@ -196,6 +197,18 @@ class DatatableController{
 
 	            }
 
+				if($value->module_role != null){
+
+	            	foreach(json_decode($value->module_role, true) as $index => $item) {
+
+	            		$module_role .= $item[array_keys($item)[0]].", ";
+	            		
+	            	}
+
+	            	$module_role = substr($module_role,0,-2);
+
+	            }
+
 
 				$date_created_role = $value->date_created_role;	
 
@@ -204,6 +217,7 @@ class DatatableController{
             		"id_role":"'.($start+$key+1).'",
             		"name_role":"'.$name_role.'",
             		"permit_role":"'.$permit_role.'",
+					"module_role":"'.$module_role.'",
 					"date_created_role":"'.$date_created_role.'",
             		"actions":"'.$actions.'"
 
