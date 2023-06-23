@@ -6,6 +6,17 @@ require_once "../controllers/template.controller.php";
 class DatatableController{
 
 	public function data(){
+		session_start();	
+			/****Validar permisos */
+			require "../views/modules/pvalidate.php";
+			
+			
+			/***********************************************
+			 Validar permisos
+			***********************************************/
+            $p_update=Pvalidate::Validatepermit("Update",$_SESSION["validates"]->permit_role);
+		    $p_suspend=Pvalidate::Validatepermit("Suspend",$_SESSION["validates"]->permit_role);
+            $p_delete=Pvalidate::Validatepermit("Delete",$_SESSION["validates"]->permit_role);
 
 		if(!empty($_POST)){
 
@@ -145,7 +156,9 @@ class DatatableController{
 	            	
             	}else{
 					
-					if($value->estatus_campus!=2){	
+					if($value->estatus_campus!=2){
+
+						if (isset($p_suspend)){
 							
 							$actions ="<a class='btn btn-success btn-sm rounded-circle stopcatItem' idcatItem='".base64_encode($value->id_campus."~".$_GET["token"])."' table='campuses' suffix='campus' page='campuses'>
 
@@ -153,27 +166,45 @@ class DatatableController{
 
 										</a>
 										";
+						}
+						else{
+							$actions ="";
+						}
+
 					}
 					else{
+						if (isset($p_suspend)){
 							$actions ="<a class='btn btn-secondary btn-sm rounded-circle activecatItem' idactivecatItem='".base64_encode($value->id_campus."~".$_GET["token"])."' table='campuses' suffix='campus' page='campuses'>
 
 										<i class='fas fa-eye-slash'></i>
 
 										</a>
 										";
-					}					
+						}
+						else{
+							$actions ="";
+						}
+					}
+						if (isset($p_update)){		
 							$actions .= "<a href='/campuses/edit/".base64_encode($value->id_campus."~".$_GET["token"])."' class='btn btn-warning btn-sm mr-1 rounded-circle'>
 							
 										<i class='fas fa-pencil-alt'></i>
 
-										</a>
-
-										<a class='btn btn-danger btn-sm rounded-circle removecatItem' idcatItem='".base64_encode($value->id_campus."~".$_GET["token"])."'  table='campuses' suffix='campus' page='campuses'>
+										</a>";
+						}
+						else{
+							$actions .="";
+							}
+						if (isset($p_delete)){
+								$actions .= "<a class='btn btn-danger btn-sm rounded-circle removecatItem' idcatItem='".base64_encode($value->id_campus."~".$_GET["token"])."'  table='campuses' suffix='campus' page='campuses'>
 
 										<i class='fas fa-trash'></i>
 
 										</a>";
-
+						}
+						else{
+								$actions .="";
+						}
 							
 
 							$actions = TemplateController::htmlClean($actions);

@@ -1,5 +1,8 @@
 <?php 
-
+     /***********************************************
+			 Validar permisos
+			***********************************************/
+      $p_create=Pvalidate::Validatepermit("Create",$_SESSION["validates"]->permit_role);
 
 if(isset($_GET["start"]) && isset($_GET["end"])){
 
@@ -20,11 +23,11 @@ if(isset($_GET["start"]) && isset($_GET["end"])){
 
 <div class="card">
   <div class="card-header">
-    
+  <?php if (isset($p_create)): ?>     
     <h3 class="card-title"> 
-      <a class="btn bg-dark btn-sm" href="/campuses/new">New Admin</a>
+      <a class="btn bg-dark btn-sm" href="/campuses/new">New Campus</a>
     </h3>
-
+  <?php endif ?>
     <div class="card-tools">
 
       <div class="d-flex">
