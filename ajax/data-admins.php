@@ -199,7 +199,7 @@ class DatatableController{
 										</a>";
 						}
 						else{
-							$actions ="";
+							$actions .="";
 						}
 						if (isset($p_delete)){
 							$actions .= "<a class='btn btn-danger btn-sm rounded-circle removeItem' idItem='".base64_encode($value->id_user."~".$_GET["token"])."' table='users' suffix='user' deleteFile='users/".$value->id_user."/".$value->picture_user."' page='admins'>
@@ -209,7 +209,7 @@ class DatatableController{
 										</a>";
 						}
 						else{
-							$actions ="";
+							$actions .="";
 						}
 							
 
