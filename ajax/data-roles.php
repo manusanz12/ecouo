@@ -7,6 +7,18 @@ class DatatableController{
 
 	public function data(){
 
+		session_start();	
+			/****Validar permisos */
+			require "../views/modules/pvalidate.php";
+			
+			
+			/***********************************************
+			 Validar permisos
+			***********************************************/
+            $p_update=Pvalidate::Validatepermit("Update",$_SESSION["validates"]->permit_role);
+		    $p_suspend=Pvalidate::Validatepermit("Suspend",$_SESSION["validates"]->permit_role);
+            $p_delete=Pvalidate::Validatepermit("Delete",$_SESSION["validates"]->permit_role);
+
 		if(!empty($_POST)){
 
 			/*=============================================
@@ -147,33 +159,54 @@ class DatatableController{
 					
 					if($value->estatus_role!=2){	
 							
+						if (isset($p_suspend)){
+							
 							$actions ="<a class='btn btn-success btn-sm rounded-circle stopcatItem' idcatItem='".base64_encode($value->id_role."~".$_GET["token"])."' table='roles' suffix='role' page='roles'>
 
 										<i class='fas fa-eye'></i>
 
 										</a>
 										";
+						}
+						else{
+							$actions ="";
+						}
+
 					}
 					else{
+						if (isset($p_suspend)){
 							$actions ="<a class='btn btn-secondary btn-sm rounded-circle activecatItem' idactivecatItem='".base64_encode($value->id_role."~".$_GET["token"])."' table='roles' suffix='role' page='roles'>
 
 										<i class='fas fa-eye-slash'></i>
 
 										</a>
 										";
-					}					
+						}
+						else{
+							$actions ="";
+						}
+					}				
+					
+					    if (isset($p_update)){						
 							$actions .= "<a href='/roles/edit/".base64_encode($value->id_role."~".$_GET["token"])."' class='btn btn-warning btn-sm mr-1 rounded-circle'>
 							
 										<i class='fas fa-pencil-alt'></i>
 
-										</a>
-
-										<a class='btn btn-danger btn-sm rounded-circle removecatItem' idcatItem='".base64_encode($value->id_role."~".$_GET["token"])."'  table='roles' suffix='role' page='roles'>
+										</a>";
+						}
+						else{
+							$actions .="";
+						}
+						if (isset($p_delete)){
+							$actions .= "<a class='btn btn-danger btn-sm rounded-circle removecatItem' idcatItem='".base64_encode($value->id_role."~".$_GET["token"])."'  table='roles' suffix='role' page='roles'>
 
 										<i class='fas fa-trash'></i>
 
 										</a>";
-
+						}
+						else{
+							$actions .="";
+							}	
 							
 
 							$actions = TemplateController::htmlClean($actions);
