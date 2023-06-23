@@ -47,15 +47,17 @@ require "views/modules/pvalidate.php";
             /***********************************************
              Validar modulos
             ***********************************************/
-            /*$m_superadmins=Pvalidate::Validatemodule("Super Admin");
-            $m_admins=Pvalidate::Validatemodule("Admins");
-            $m_teachers=Pvalidate::Validatemodule("Student");
-            $m_students=Pvalidate::Validatemodule("Teacher");
-            $m_catalogue=Pvalidate::Validatemodule("Catalogue");*/
+            $m_superadmins=Pvalidate::Validatemodule("Super Admin");
+           $m_admins=Pvalidate::Validatemodule("Admins");
+            $m_teachers=Pvalidate::Validatemodule("Students");
+            $m_students=Pvalidate::Validatemodule("Teachers");
+            $m_catalogue=Pvalidate::Validatemodule("Catalogue");
+
+           
 
           ?>
           
-          
+          <?php if (isset($m_superadmins)): ?> 
                 <li class="nav-item">
                   <a href="admins" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "admins"): ?>active<?php endif ?>">
                     <i class="nav-icon fas fa-tasks"></i>
@@ -64,7 +66,7 @@ require "views/modules/pvalidate.php";
                     </p>
                   </a>
                 </li>
-          
+          <?php endif ?>
           
           
           <?php if (isset($m_admins)): ?> 
@@ -104,7 +106,7 @@ require "views/modules/pvalidate.php";
           <?php endif ?>
           
           
-
+          <?php if (isset($m_superadmins)): ?>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle"></i>
@@ -147,7 +149,7 @@ require "views/modules/pvalidate.php";
                               </p>
                             </a>
                           </li>
-                
+              <?php endif ?>
                   </ul>
                 </li>
 
