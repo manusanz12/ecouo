@@ -102,35 +102,36 @@
                 	
                 	if($roles->permit_role != null){
 
-                		foreach (json_decode($roles->permit_role, true) as $key => $value) {
-
-                			if(array_keys($value)[0] == "Create"){
+											
+                		foreach (json_decode($roles->permit_role, true) as $value) {
+														
+                			if($value[0] == "Create"){
 
                 				$p_create = "checked";
-
+								
                 			}
 
-                			if(array_keys($value)[0] == "Update"){
+                			if($value[0] == "Update"){
 
                 				$p_update =  "checked";
-
+								
                 			}
 
-                			if(array_keys($value)[0] == "Suspend"){
+                			if($value[0] == "Suspend"){
 
                 				$p_suspend =  "checked";
-
+								
                 			}
 
-                			if(array_keys($value)[0] == "Delete"){
+                			if($value[0] == "Delete"){
 
                 				$p_delete =  "checked";
-
+								
                 			}
 
                 			                			
                 		}
-
+						
 
                 	}
 
@@ -150,32 +151,32 @@
 
 						if($roles->module_role != null){
 
-							foreach (json_decode($roles->module_role, true) as $key => $value) {
+							foreach (json_decode($roles->module_role, true) as $value) {
 
-								if(array_keys($value)[0] == "Super Admin"){
+								if($value[0] == "Super Admin"){
 
 									$m_superadmins = "checked";
 
 								}
 
-								if(array_keys($value)[0] == "Admins"){
+								if($value[0] == "Admins"){
 
 									$m_admins =  "checked";
 
 								}
 
-								if(array_keys($value)[0] == "Student"){
+								if($value[0] == "Students"){
 
 									$m_students =  "checked";
 
 								}
 
-								if(array_keys($value)[0] == "Teacher"){
+								if($value[0] == "Teachers"){
 
 									$m_teachers =  "checked";
 
 								}
-								if(array_keys($value)[0] == "Catalogue"){
+								if($value[0] == "Catalogue"){
 
 									$m_catalogue =  "checked";
 

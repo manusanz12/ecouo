@@ -3,6 +3,9 @@
 require_once "../controllers/curl.controller.php";
 require_once "../controllers/template.controller.php";
 
+session_start();
+include "../views/modules/pvalidate.php"; 
+
 class DatatableController{
 
 	public function data(){
@@ -133,7 +136,8 @@ class DatatableController{
             /*=============================================
             Recorremos la data
             =============================================*/	
-
+			
+						
             foreach ($data as $key => $value) {
 
             	if($_GET["text"] == "flat"){
@@ -143,7 +147,9 @@ class DatatableController{
 	            	
             	}else{
 					$picture_user = "<img src='".TemplateController::returnImg($value->id_user,$value->picture_user,$value->method_user)."' class='img-circle' style='width:70px'>";
-					if($value->estatus_user!=2){	
+					if($value->estatus_user!=2){
+						
+						
 							
 							$actions ="<a class='btn btn-success btn-sm rounded-circle stopItem' idstopItem='".base64_encode($value->id_user."~".$_GET["token"])."' table='users' suffix='user' page='admins'>
 
@@ -151,6 +157,7 @@ class DatatableController{
 
 										</a>
 										";
+									
 					}
 					else{
 							$actions ="<a class='btn btn-secondary btn-sm rounded-circle activeItem' idactiveItem='".base64_encode($value->id_user."~".$_GET["token"])."' table='users' suffix='user' page='admins'>

@@ -47,15 +47,32 @@ class AdminsController{
 				if($response->status == 200){
 
 					/*=============================================
+					Validamos que permisos y modulos tiene acceso el user
+					=============================================*/	
+
+					$id_roles=$response->results[0]->id_role_user;
+					$url = "relations?rel=users,roles&type=user,role&select=id_user,id_role_user,id_role,name_role,area_role,permit_role,module_role&linkTo=id_role_user&search=".$id_roles;
+
+					$method = "GET";
+					$fields = array();
+
+					$response2 = CurlController::request($url,$method,$fields);  
+					
+					$_SESSION["validates"] = $response2->results[0];
+
+					
+					/*=============================================
 					Validamos que si tenga rol administrativo
 					=============================================*/	
 
 					
-					if($response->results[0]->id_role_user != "10"){
+					if($response->results[0]->id_role_user == "1" || $response->results[0]->id_role_user == "2"){
 
 						echo ' <div class="alert alert-danger">You do not have permissions to access</div>';
 						return;
 					}
+
+
 
 
 					/*=============================================
@@ -70,7 +87,7 @@ class AdminsController{
 					fncFormatInputs();
 
 					localStorage.setItem("token_user", "'.$response->results[0]->token_user.'");
-
+					
 					window.location = "'.$_SERVER["REQUEST_URI"].'"
 
 					</script>';

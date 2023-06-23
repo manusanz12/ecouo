@@ -34,25 +34,25 @@ class RolesController{
 
 				if(isset($_POST["p_create"])){	
 
-					array_push($permisossuser, ["Create"=> "Agregar"]);
+					array_push($permisossuser, ["Create"]);
 
 				}
 
                 if(isset($_POST["p_update"])){	
 
-					array_push($permisossuser, ["Update"=> "Actualizar"]);
+					array_push($permisossuser, ["Update"]);
 
 				}
 
                 if(isset($_POST["p_suspend"])){	
 
-					array_push($permisossuser, ["Suspend"=> "Suspender"]);
+					array_push($permisossuser, ["Suspend"]);
 
 				}
 
                 if(isset($_POST["p_delete"])){	
 
-					array_push($permisossuser, ["Delete"=> "Eliminar"]);
+					array_push($permisossuser, ["Delete"]);
 
 				}
 
@@ -78,31 +78,31 @@ class RolesController{
 
 				if(isset($_POST["m_superadmins"])){	
 
-					array_push($modulesuser, ["Super Admin"=> "Super Admin"]);
+					array_push($modulesuser, ["Super Admin"]);
 
 				}
 
                 if(isset($_POST["m_admins"])){	
 
-					array_push($modulesuser, ["Admins"=> "Admins"]);
+					array_push($modulesuser, ["Admins"]);
 
 				}
 
                 if(isset($_POST["m_students"])){	
 
-					array_push($modulesuser, ["Student"=> "Estudiante"]);
+					array_push($modulesuser, ["Students"]);
 
 				}
 
                 if(isset($_POST["m_teachers"])){	
 
-					array_push($modulesuser, ["Teacher"=> "Teacher"]);
+					array_push($modulesuser, ["Teachers"]);
 
 				}
 
 				if(isset($_POST["m_catalogue"])){	
 
-					array_push($modulesuser, ["Catalogue"=> "Catálogos"]);
+					array_push($modulesuser, ["Catalogue"]);
 
 				}
 
@@ -241,30 +241,31 @@ class RolesController{
 
 						if(isset($_POST["p_create"])){	
 
-                            array_push($permisossuser, ["Create"=> "Agregar"]);
+                            array_push($permisossuser, ["Create"]);
         
                         }
         
                         if(isset($_POST["p_update"])){	
         
-                            array_push($permisossuser, ["Update"=> "Actualizar"]);
+                            array_push($permisossuser, ["Update"]);
         
                         }
         
                         if(isset($_POST["p_suspend"])){	
         
-                            array_push($permisossuser, ["Suspend"=> "Suspender"]);
+                            array_push($permisossuser, ["Suspend"]);
         
                         }
         
                         if(isset($_POST["p_delete"])){	
         
-                            array_push($permisossuser, ["Delete"=> "Eliminar"]);
+                            array_push($permisossuser, ["Delete"]);
         
                         }
 						if(count($permisossuser) > 0){
 
-							$permisossuser = json_encode($permisossuser);
+							$permisossuser = json_encode($permisossuser,true);
+							
 
 						}else{
 
@@ -280,31 +281,31 @@ class RolesController{
 
 							if(isset($_POST["m_superadmins"])){	
 
-								array_push($modulesuser, ["Super Admin"=> "Super Admin"]);
+								array_push($modulesuser, ["Super Admin"]);
 
 							}
 
 							if(isset($_POST["m_admins"])){	
 
-								array_push($modulesuser, ["Admins"=> "Admins"]);
+								array_push($modulesuser, ["Admins"]);
 
 							}
 
 							if(isset($_POST["m_students"])){	
 
-								array_push($modulesuser, ["Student"=> "Estudiante"]);
+								array_push($modulesuser, ["Students"]);
 
 							}
 
 							if(isset($_POST["m_teachers"])){	
 
-								array_push($modulesuser, ["Teacher"=> "Maestro"]);
+								array_push($modulesuser, ["Teachers"]);
 
 							}
 
 							if(isset($_POST["m_catalogue"])){	
 
-								array_push($modulesuser, ["Catalogue"=> "Catálogos"]);
+								array_push($modulesuser, ["Catalogue"]);
 
 							}
 

@@ -177,6 +177,7 @@ foreach ($routesArray as $key => $value) {
     <?php
 
     if(!empty($routesArray[1])){
+      
 
       if($routesArray[1] == "admins" ||
          $routesArray[1] == "administrators" ||
@@ -187,7 +188,7 @@ foreach ($routesArray as $key => $value) {
          $routesArray[1] == "programs" ||
         $routesArray[1] == "periods" ||
          $routesArray[1] == "logout"){
-
+          
         include "views/pages/".$routesArray[1]."/".$routesArray[1].".php";
 
       }else{
