@@ -106,7 +106,7 @@ require "views/modules/pvalidate.php";
           <?php endif ?>
           
           
-          <?php if (isset($m_superadmins)): ?>
+          <?php if (isset($m_catalogue)): ?>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle"></i>
@@ -149,22 +149,42 @@ require "views/modules/pvalidate.php";
                               </p>
                             </a>
                           </li>
-              <?php endif ?>
+                          
+          <?php endif ?>
+         
                   </ul>
+ 
                 </li>
 
+          <?php if (isset($m_catalogue)): ?>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-calendar"></i>
+                    <p>
+                      Eventos y Servicios
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                          <a href="/categories" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "categories"): ?>active<?php endif ?>">
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>
+                              Categories
+                            </p>
+                          </a>
+                        </li>
+                          
+                          
+          <?php endif ?>
+         
+                  </ul>
+ 
+                </li>
          
 
           <!--
-         <li class="nav-item">
-            <a href="/categories" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "categories"): ?>active<?php endif ?>">
-              <i class="nav-icon fas fa-list"></i>
-              <p>
-                Categories
-              </p>
-            </a>
-          </li>
-
+         
           
 
           <li class="nav-item">
