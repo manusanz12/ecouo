@@ -19,7 +19,7 @@ class DeleteController{
 		if($security[1] == $this->token){
 
 			/*=============================================
-			Validar primero que la categoría no tenga productos
+			Validar primero que la categoría no tenga noticias
 			=============================================*/
 				
 			if($this->table == "campuses" || $this->table == "subcategories" || $this->table == "stores"){
@@ -48,7 +48,7 @@ class DeleteController{
 
 			if($this->deleteFile != "no"){
 
-				if($this->table == "products"){
+				if($this->table == "noticies"){
 
 					$count = 0;
 
@@ -102,13 +102,17 @@ class DeleteController{
 
 				$response = CurlController::request($url, $method, $fields);
 
-				if($response->status==200){
+				if($response->status==200 && $this->table != "noticies"){
+
 					$url_2 = "datausers?id=".$security[0]."&nameId=id_datauser&token=".$this->token."&table=users&suffix=user";
 					$method_2 = "DELETE";
 					$fields_2 = array();
 
 					$response = CurlController::request($url_2, $method_2, $fields_2);
 					
+					echo $response->status;
+				}
+				else{
 					echo $response->status;
 				}
 			}
@@ -152,7 +156,7 @@ class DeletecatController{
 			
 
 			/*=============================================
-			Validar primero que la categoría no tenga productos
+			Validar primero que la categoría no tenga noticias
 			=============================================*/
 			
 			if($this->table == "campuses" || $this->table == "roles"){
