@@ -7,7 +7,7 @@ Mostrar errores
 
 ini_set('display_errors', 1);
 ini_set("log_errors", 1);
-ini_set("error_log",  "C:/Program Files/Ampps/www/ecosistema.soyuo.mx/php_error_log");
+ini_set("error_log",  "C:/www/ecosistema.soyuo.mx/php_error_log");
 
 /*=============================================
 CORS

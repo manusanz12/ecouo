@@ -30,8 +30,14 @@ foreach ($routesArray as $key => $value) {
 
   <base href="<?php echo TemplateController::path() ?>">
 
-  <link rel="icon" href="views/assets/img/template/icono.ico">
 
+ 
+
+   <!-- Icons -->
+  <link rel="icon" href="views/assets/img/template/icono.ico">
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="views/assets/custom/template/style.css">
+  <link rel="stylesheet" href="views/assets/custom/template/market.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -58,9 +64,14 @@ foreach ($routesArray as $key => $value) {
   <link rel="stylesheet" href="views/assets/plugins/adminlte/css/adminlte.min.css">
    <!-- Template CSS -->
   <link rel="stylesheet" href="views/assets/custom/template/template.css">
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="views/assets/custom/template/personalizados.css">
 
+
+ <!-- PLUGINS -->
+   
   <!-- jQuery -->
-  <script src="views/assets/plugins/jquery/jquery.min.js"></script>
+   <script src="views/assets/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="views/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- overlayScrollbars -->

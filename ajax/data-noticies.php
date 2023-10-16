@@ -189,13 +189,6 @@ class DatatableController{
 
 	                	$actions = "<div class='btn-group'>
 
-                                <a href='".TemplateController::srcImg().$value->url_noticie."' target='_blank' class='btn btn-info btn-sm rounded-circle mr-2'>
-
-                                    <i class='fas fa-eye'></i>
-
-                                </a>
-
-
                                 <a href='/noticies/edit/".base64_encode($value->id_noticie."~".$_GET["token"])."' class='btn btn-warning btn-sm rounded-circle mr-2'>
 
                                     <i class='fas fa-pencil-alt'></i>
