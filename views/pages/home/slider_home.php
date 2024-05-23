@@ -8,12 +8,14 @@ $randomStart = rand(0, ($totalnews-3));
 
 $select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie";
 
-$url = "relations?rel=noticies,categories&type=noticie,category&orderBy=id_noticie&orderMode=ASC&startAt=".$randomStart."&endAt=5&select=".$select;
+$url = "relations?rel=noticies,categories&type=noticie,category&orderBy=id_noticie&orderMode=ASC&startAt=".$randomStart."&endAt=2&select=".$select;
 $method = "GET";
 $fields = array();
 $header = array();
 
 $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results;
+//echo '<pre>'; print_r($NewsHSlider); echo '</pre>';
+
 
 ?>
     
@@ -37,11 +39,11 @@ $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results
                 <?php 
 
                     $hSlider = json_decode($value->horizontal_slider_noticie, true);
-
+                   
                 ?>    
-                <div class="carousel-item <?php echo $V_active; ?>" data-background="/views/assets/img/noticies/<?php echo $value->url_category  ?>/horizontal/<?php echo $topBanner["IMG tag"] ?>);">
+                <div class="carousel-item <?php echo $V_active; ?>" data-background="/views/assets/img/noticies/<?php echo $value->url_category  ?>/horizontal/<?php echo $hSlider["IMG tag"]; ?>">
                     <div class="ps-banner--market-4" >
-                            <img src="/views/assets/img/noticies/<?php echo $value->url_category  ?>/horizontal/<?php echo $topBanner["IMG tag"] ?>);"  alt="...">
+                            <img src="/views/assets/img/noticies/<?php echo $value->url_category  ?>/horizontal/<?php echo $hSlider["IMG tag"]; ?>"  alt="...">
                             <div class="ps-banner__content">
                             <h4><?php echo $hSlider["H4 tag"] ?></h4>
                             <h3><?php echo $hSlider["H3-1 tag"] ?><br/> 
