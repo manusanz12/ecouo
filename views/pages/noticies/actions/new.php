@@ -58,6 +58,22 @@
 				</div>
 
 				<!--=====================================
+                Link de la Noticia
+                ======================================-->
+
+				<div class="form-group mt-2">
+					
+					<label>Link de la noticia <sup class="text-danger">*</sup></label>
+
+					<input 
+					type="text" 
+					class="form-control"
+					name="link-name_noticie"
+					required>
+
+				</div>
+
+				<!--=====================================
 		        Tipo
 		        ======================================-->
 

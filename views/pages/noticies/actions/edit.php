@@ -110,6 +110,23 @@
 				</div>
 
 				<!--=====================================
+                Link de la noticia
+                ======================================-->
+
+				<div class="form-group mt-2">
+					
+					<label>Link de la Noticia <sup class="text-danger">*</sup></label>
+
+					<input 
+					type="text" 
+					class="form-control"
+					name="link-name_noticie"
+					value="<?php echo $noticie->link_noticie ?>"
+					required>
+
+				</div>
+
+				<!--=====================================
 		        Tipo
 		        ======================================-->
 
