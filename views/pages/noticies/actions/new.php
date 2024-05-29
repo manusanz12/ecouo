@@ -58,6 +58,37 @@
 				</div>
 
 				<!--=====================================
+		        Tipo
+		        ======================================-->
+
+		        <div class="form-group mt-2">
+		            
+		            <label>Tipo<sup class="text-danger">*</sup></label>
+
+		            <div class="form-group">
+		                
+		                <select
+		                class="form-control select2"
+		                name="name-type"
+		                style="width:100%"
+		                required>
+
+		                    <option value="">Select Type</option>
+							<option value="Evento">Evento</option>
+							<option value="Noticia" >Noticia</option>
+		                      
+		                  
+
+		                </select>
+
+		                <div class="valid-feedback">Valid.</div>
+            			<div class="invalid-feedback">Please fill out this field.</div>
+
+		            </div>
+
+		        </div>
+
+				<!--=====================================
 		        Categoría
 		        ======================================-->
 
