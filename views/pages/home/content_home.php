@@ -1,3 +1,24 @@
+<?php
+/*=============================================
+Traer Eventos aleatoriamente
+=============================================*/
+
+
+$randomStart = rand(0, ($totalnews-3));
+$tipo_EN="Evento";
+$select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie,type_noticie";
+
+$url = "relations?rel=noticies,categories&type=noticie,category&orderBy=id_noticie&orderMode=ASC&startAt=".$randomStart."&endAt=3&select=".$select."&linkTo=type_noticie&equalTo=".$tipo_EN;
+$method = "GET";
+$fields = array();
+$header = array();
+
+$NewsHSlider = CurlController::request($url, $method, $fields, $header)->results;
+//echo '<pre>'; print_r($NewsHSlider); echo '</pre>';
+
+$V_active="active";
+?>
+        
         <!-- START Servicios & eventos-->
         <h5 class="mt-4 mb-2">Bootstrap Accordion & Carousel</h5>
 
@@ -96,6 +117,9 @@
                 <h3 class="card-title">Carousel</h3>
               </div>
               <!-- /.card-header -->
+
+
+              
               <div class="card-body">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
@@ -104,9 +128,18 @@
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                   </ol>
                   <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="d-block w-100" src="https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
-                    </div>
+                  <?php foreach ($NewsHSlider as $key => $value): ?>
+                      <?php 
+
+                      $hSlider = json_decode($value->horizontal_slider_noticie, true);
+                      
+                      ?>  
+                      <div class="carousel-item <?php echo $V_active; ?>">
+                        <img class="d-block w-100" src="/views/assets/img/noticies/<?php echo $value->url_category  ?>/horizontal/<?php echo $hSlider["IMG tag"]; ?>" alt="First slide" height="300">
+                      </div>
+                  <?php 
+                    $V_active="";
+                    endforeach ?>
                     <div class="carousel-item">
                       <img class="d-block w-100" src="https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
                     </div>

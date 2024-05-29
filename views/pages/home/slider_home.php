@@ -34,29 +34,29 @@ $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results
             $V_active="active";
             ?>
             <div class="carousel-inner">
-            <?php foreach ($NewsHSlider as $key => $value): ?>
+                <?php foreach ($NewsHSlider as $key => $value): ?>
 
+                    <?php 
+
+                        $hSlider = json_decode($value->horizontal_slider_noticie, true);
+                    
+                    ?>    
+                    <div class="carousel-item <?php echo $V_active; ?>" data-background="/views/assets/img/noticies/<?php echo $value->url_category  ?>/horizontal/<?php echo $hSlider["IMG tag"]; ?>">
+                        <div class="ps-banner--market-4" >
+                                <img src="/views/assets/img/noticies/<?php echo $value->url_category  ?>/horizontal/<?php echo $hSlider["IMG tag"]; ?>"  alt="...">
+                                <div class="ps-banner__content">
+                                <h4><?php echo $hSlider["H4 tag"] ?></h4>
+                                <h3><?php echo $hSlider["H3-1 tag"] ?><br/> 
+                                    <?php echo $hSlider["H3-2 tag"] ?><br/> 
+                                    <p> <?php echo $hSlider["H3-3 tag"] ?> <strong>  <?php echo $hSlider["H3-4s tag"] ?></strong></p>
+                                </h3>
+                                <a class="ps-btn" href="<?php echo $path.$value->url_product ?>"> <?php echo $hSlider["Button tag"] ?></a>
+                                </div>
+                        </div>        
+                    </div>
                 <?php 
-
-                    $hSlider = json_decode($value->horizontal_slider_noticie, true);
-                   
-                ?>    
-                <div class="carousel-item <?php echo $V_active; ?>" data-background="/views/assets/img/noticies/<?php echo $value->url_category  ?>/horizontal/<?php echo $hSlider["IMG tag"]; ?>">
-                    <div class="ps-banner--market-4" >
-                            <img src="/views/assets/img/noticies/<?php echo $value->url_category  ?>/horizontal/<?php echo $hSlider["IMG tag"]; ?>"  alt="...">
-                            <div class="ps-banner__content">
-                            <h4><?php echo $hSlider["H4 tag"] ?></h4>
-                            <h3><?php echo $hSlider["H3-1 tag"] ?><br/> 
-                                <?php echo $hSlider["H3-2 tag"] ?><br/> 
-                                <p> <?php echo $hSlider["H3-3 tag"] ?> <strong>  <?php echo $hSlider["H3-4s tag"] ?></strong></p>
-                            </h3>
-                            <a class="ps-btn" href="<?php echo $path.$value->url_product ?>"> <?php echo $hSlider["Button tag"] ?></a>
-                            </div>
-                    </div>        
-                </div>
-            <?php 
-            $V_active="";
-            endforeach ?>
+                $V_active="";
+                endforeach ?>
                 <div class="carousel-item ">
                 <img src="img/slider/horizontal/2.jpg" class="d-block w-100" alt="...">
                 </div>
