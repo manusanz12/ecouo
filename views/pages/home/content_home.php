@@ -114,7 +114,7 @@ $V_active="active";
           <div class="col-md-6">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Carousel</h3>
+                <h3 class="card-title">Eventos</h3>
               </div>
               <!-- /.card-header -->
 
@@ -140,12 +140,12 @@ $V_active="active";
                   <?php 
                     $V_active="";
                     endforeach ?>
-                    <div class="carousel-item">
+                    <!--<div class="carousel-item">
                       <img class="d-block w-100" src="https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
                     </div>
                     <div class="carousel-item">
                       <img class="d-block w-100" src="https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
-                    </div>
+                    </div>-->
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-custom-icon" aria-hidden="true">

@@ -57,12 +57,12 @@ $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results
                 <?php 
                 $V_active="";
                 endforeach ?>
-                <div class="carousel-item ">
+                <!--<div class="carousel-item ">
                 <img src="img/slider/horizontal/2.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item ">
                 <img src="img/slider/horizontal/3.jpg" class="d-block w-100" alt="...">
-                </div>
+                </div>-->
             </div>
             <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
