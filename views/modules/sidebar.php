@@ -182,6 +182,14 @@ require "views/modules/pvalidate.php";
                             </p>
                           </a>
                         </li>
+                        <li class="nav-item">
+                          <a href="/services" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "services"): ?>active<?php endif ?>">
+                            <i class="nav-icon fas fa-list"></i>
+                            <p>
+                              Services
+                            </p>
+                          </a>
+                        </li>
                           
                           
           <?php endif ?>

@@ -39,6 +39,8 @@ class CategoriesController{
 
 					$saveImageCategory = CurlController::requestFile($fields);
 
+
+
 				}else{
 
 					echo '<script>
@@ -67,6 +69,8 @@ class CategoriesController{
 					"date_created_category" => date("Y-m-d")
 
 				);
+
+				
 
 				/*=============================================
 				Solicitud a la API
