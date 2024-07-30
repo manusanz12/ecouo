@@ -22,7 +22,7 @@ class CampusController{
 			Validamos la sintaxis de los campos
 			=============================================*/		
 
-			if(preg_match('/^[A-Za-z0-9]{1,}$/', $_POST["name"] ) &&
+			if(preg_match('/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,50}$/', $_POST["name"] ) &&
                preg_match('/^[-\\(\\)\\=\\%\\&\\$\\;\\_\\*\\"\\#\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]{1,}$/', $_POST["name_short"] )){
 
 			   	/*=============================================

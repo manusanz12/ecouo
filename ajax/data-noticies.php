@@ -1,6 +1,5 @@
 <?php
 
-
 require_once "../controllers/curl.controller.php";
 require_once "../controllers/template.controller.php";
 
@@ -486,4 +485,5 @@ Activar función DataTable
 
 $data = new DatatableController();
 $data -> data();
+
 

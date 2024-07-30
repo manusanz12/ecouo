@@ -23,35 +23,6 @@ class NoticiesController{
 
 			if(preg_match('/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,50}$/', $_POST["name-noticie"] ) ){
 
-
-				/*=============================================
-				Proceso para configurar la galería
-				=============================================*/		
-
-				$galleryNoticie = array();
-				$countNoticie = 0;
-
-				foreach (json_decode($_POST["gallery-noticie"],true) as $key => $value) {
-					
-					$countNoticie++;
-
-					$fields = array(
-					
-						"file"=>$value["file"],
-						"type"=>$value["type"],
-						"folder"=>"noticies/".explode("_",$_POST["name-category"])[1]."/gallery",
-						"name"=>$_POST["url-name_noticie"]."_".mt_rand(100000000, 9999999999),
-						"width"=>$value["width"],
-						"height"=>$value["height"]
-					);
-
-					$saveImageGallery = CurlController::requestFile($fields);
-
-					array_push($galleryNoticie, $saveImageGallery);
-
-				}
-
-				if($countNoticie == count($galleryNoticie)){	
 					/*=============================================
 					Validación Imagen
 					=============================================*/		
@@ -83,6 +54,47 @@ class NoticiesController{
 
 						return;
 					}
+
+
+				/*=============================================
+				Proceso para configurar la galería
+				=============================================*/		
+
+				$galleryNoticie = array();
+				$countNoticie = 0;
+
+				
+
+				foreach (json_decode($_POST["gallery-noticie"],true) as $key => $value) {
+					
+					$countNoticie++;
+
+					$fields = array(
+					
+						"file"=>$value["file"],
+						"type"=>$value["type"],
+						"folder"=>"noticies/".explode("_",$_POST["name-category"])[1]."/gallery",
+						"name"=>$_POST["url-name_noticie"]."_".mt_rand(100000000, 9999999999),
+						"width"=>$value["width"],
+						"height"=>$value["height"]
+					);
+
+					
+
+					$saveImageGallery = CurlController::requestFile($fields);
+					
+
+
+					array_push($galleryNoticie, $saveImageGallery);
+					
+
+				}
+
+				
+				if($countNoticie == count($galleryNoticie)){
+					
+					
+
 
 					/*=============================================
 					Agrupamos data del video

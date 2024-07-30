@@ -68,8 +68,8 @@ if(isset($_GET["start"]) && isset($_GET["end"])){
         <th>Vertical Slider</th>
         <th>Video</th>
         <th>Tags</th>
-        <th>Views</th>
-        <th>Reviews</th>
+        <!--<th>Views</th>
+        <th>Reviews</th>-->
         <th>Date</th>
       </tr>
       </thead>
