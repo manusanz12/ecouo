@@ -78,9 +78,9 @@
 					<input 
 					type="text" 
 					class="form-control"
-					pattern="[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,50}"
+					pattern="[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,100}"
 					onchange="validateJS(event,'text&number')"
-					maxlength="50"
+					maxlength="100"
 					name="name-noticie"
 					value="<?php echo $noticie->name_noticie ?>"
 					required>

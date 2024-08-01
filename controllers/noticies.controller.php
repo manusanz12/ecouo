@@ -21,7 +21,7 @@ class NoticiesController{
 			Validamos la sintaxis de los campos
 			=============================================*/		
 
-			if(preg_match('/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,50}$/', $_POST["name-noticie"] ) ){
+			if(preg_match('/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,100}$/', $_POST["name-noticie"] ) ){
 
 					/*=============================================
 					Validación Imagen
@@ -394,7 +394,7 @@ class NoticiesController{
 						"type_noticie" => trim($_POST["name-type"]),
 						"id_category_noticie" => explode("_",$_POST["name-category"])[0],
 						"image_noticie" => $saveImagenoticie,
-						"description_noticie" => trim(TemplateController::htmlClean($_POST["description-noticie"])),
+						"description_noticie" => trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-noticie"]))),
 						"tags_noticie" => json_encode(explode(",",$_POST["tags-noticie"])),
 						"gallery_noticie" => json_encode($galleryNoticie),
 						"video_noticie" => $video_noticie,
@@ -498,7 +498,7 @@ class NoticiesController{
 					/*=============================================
 					Validamos la sintaxis de los campos
 					=============================================*/		
-					if(preg_match('/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,50}$/', $_POST["name-noticie"] )){
+					if(preg_match('/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,100}$/', $_POST["name-noticie"] )){
 						$gallerynoticie = array();
 						$countGallery = 0;
 						$countGallery2 = 0;
@@ -918,8 +918,8 @@ class NoticiesController{
 						   	/*=============================================
 							Agrupamos la información 
 							=============================================*/		
-
-							$data = "name_noticie=".trim(TemplateController::capitalize($_POST["name-noticie"]))."&url_noticie=".trim($_POST["url-name_noticie"])."&link_noticie=".trim($_POST["link-name_noticie"])."&type_noticie=".trim($_POST["name-type"])."&id_category_noticie=".explode("_",$_POST["name-category"])[0]."&image_noticie=".$saveImagenoticie."&description_noticie=".urlencode(trim(TemplateController::htmlClean($_POST["description-noticie"])))."&tags_noticie=".json_encode(explode(",",$_POST["tags-noticie"]))."&gallery_noticie=".json_encode($gallerynoticie)."&video_noticie=".$video_noticie."&top_banner_noticie=".json_encode($topBanner)."&default_banner_noticie=".$saveImageDefaultBanner."&horizontal_slider_noticie=".json_encode($hSlider)."&vertical_slider_noticie=".$saveImageVSlider."&offer_noticie=".$offer_noticie;
+							
+							$data = "name_noticie=".trim(TemplateController::capitalize($_POST["name-noticie"]))."&url_noticie=".trim($_POST["url-name_noticie"])."&link_noticie=".trim($_POST["link-name_noticie"])."&type_noticie=".trim($_POST["name-type"])."&id_category_noticie=".explode("_",$_POST["name-category"])[0]."&image_noticie=".$saveImagenoticie."&description_noticie=".urlencode(trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-noticie"]))))."&tags_noticie=".json_encode(explode(",",$_POST["tags-noticie"]))."&gallery_noticie=".json_encode($gallerynoticie)."&video_noticie=".$video_noticie."&top_banner_noticie=".json_encode($topBanner)."&default_banner_noticie=".$saveImageDefaultBanner."&horizontal_slider_noticie=".json_encode($hSlider)."&vertical_slider_noticie=".$saveImageVSlider."&offer_noticie=".$offer_noticie;
 							//$data = "name_noticie=".trim(TemplateController::capitalize($_POST["name-noticie"]))."&gallery_noticie=".json_encode($gallerynoticie)."&offer_noticie=".$offer_noticie;
 							//echo '<pre>'; print_r($data); echo '</pre>';
 							//return;

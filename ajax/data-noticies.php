@@ -58,7 +58,7 @@ class DatatableController{
 
             if(!empty($_POST['search']['value'])){
 
-            	if(preg_match('/^[0-9A-Za-zñÑáéíóú ]{1,}$/',$_POST['search']['value'])){
+            	if(preg_match('/^[0-9A-Za-zñÑáéíóú ]{1,100}$/',$_POST['search']['value'])){
 
 	            	$linkTo = ["name_noticie","tags_noticie","name_category","date_created_noticie"];
 
@@ -248,6 +248,7 @@ class DatatableController{
 	                }   
 
 	                $gallery_noticie .= "</div>";
+					
 
 	            	 /*=============================================
 	                Top Banner Noticia
@@ -354,7 +355,7 @@ class DatatableController{
 	                Reviews Noticia
 	                =============================================*/
 
-	                $reviews = TemplateController::averageReviews(json_decode($value->reviews_noticie,true));
+	                /*$reviews = TemplateController::averageReviews(json_decode($value->reviews_noticie,true));
 
 	                $reviews_noticie = "<div>";
 
@@ -388,12 +389,12 @@ class DatatableController{
 		            if($value->reviews_noticie!= null){
 
 
-		            $reviews_noticie .= "<div>Total Reviews ".count(json_decode($value->reviews_noticie,true))."</div>";
+		            	$reviews_noticie .= "<div>Total Reviews ".count(json_decode($value->reviews_noticie,true))."</div>";
 		            
 		            }
 
 
-		            $reviews_noticie .= "</div>";
+		            $reviews_noticie .= "</div>";*/
 
 	              
 
@@ -417,7 +418,7 @@ class DatatableController{
                 Views Noticia
                 =============================================*/
 
-                $views_noticie = $value->views_noticie;
+                //$views_noticie = $value->views_noticie;
 
                /*=============================================
                 Fecha de vencimiento del Noticia
@@ -449,8 +450,6 @@ class DatatableController{
                     "vertical_slider_noticie":"'.$vertical_slider_noticie.'",
                     "video_noticie":"'.$video_noticie.'",
                     "tags_noticie":"'.$tags_noticie.'",
-                    "views_noticie":"'.$views_noticie.'",
-                    "reviews_noticie":"'.$reviews_noticie.'",
                     "date_created_noticie":"'.$date_created_noticie.'"
                   
                 },';
@@ -465,6 +464,8 @@ class DatatableController{
             $dataJson .= ']}';
 
             echo $dataJson;
+
+			
 
 
 
