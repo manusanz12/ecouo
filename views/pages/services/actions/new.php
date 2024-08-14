@@ -18,7 +18,7 @@
 				<label class="text-danger float-right"><sup>*</sup> Required</label>
 
 				<!--=====================================
-                Nombre de la Noticia
+                Nombre de la Servicio
                 ======================================-->
 				
 				<div class="form-group mt-2">
@@ -41,7 +41,7 @@
 
 
 				<!--=====================================
-                Url de la Noticia
+                Url de la Servicio
                 ======================================-->
 
 				<div class="form-group mt-2">
@@ -58,7 +58,7 @@
 				</div>
 
 				<!--=====================================
-                Link de la Noticia
+                Link de la Servicio
                 ======================================-->
 
 				<div class="form-group mt-2">
@@ -247,7 +247,7 @@
 
 		        	</div>
 
-		        	<input type="hidden" name="gallery-service">
+		        	<input type="hidden" name="gallery-noticie">
 
 		        </div>
 

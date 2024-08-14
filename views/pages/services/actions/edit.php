@@ -56,7 +56,7 @@
 
 			 	require_once "controllers/services.controller.php";
 
-				$create = new NoticiesController();
+				$create = new ServicesController();
 				$create -> edit($service->id_service);
 
 			?>
@@ -178,7 +178,7 @@
 			
 
 		        <!--=====================================
-                Imagen de Noticia
+                Imagen de Servicio
                 ======================================-->
 
 				<div class="form-group mt-2">
@@ -292,11 +292,11 @@
 
 		        	</div>
 
-		        	<input type="hidden" name="gallery-service-old" value='<?php echo $service->gallery_service ?>'>
+		        	<input type="hidden" name="gallery-noticie-old" value='<?php echo $service->gallery_service ?>'>
 
-		        	<input type="hidden" name="gallery-service">
+		        	<input type="hidden" name="gallery-noticie">
 
-		        	<input type="hidden" name="delete-gallery-service">
+		        	<input type="hidden" name="delete-gallery-noticie">
 
 		        </div>
 
@@ -913,7 +913,7 @@
 
 		        <div class="form-group mt-2">
 		            
-		            <label>Servicio Offer Ex: <strong>Type:</strong> Disccount, <strong>Percent %:</strong> 25, <strong>End offer:</strong> 30/06/2020</label>
+		            <!--<label>Servicio Offer Ex: <strong>Type:</strong> Disccount, <strong>Percent %:</strong> 25, <strong>End offer:</strong> 30/06/2020</label>-->
 
 		            <div class="row mb-3">
 

@@ -9,49 +9,25 @@ class ServicesController{
 	public function create(){
 
 		if(isset($_POST["name-service"])){
+			
 
-			echo '<script>
+		/*	echo '<script>
 
 				matPreloader("on");
 				fncSweetAlert("loading", "Loading...", "");
 
-			</script>';
+			</script>';*/
+
 
 			/*=============================================
 			Validamos la sintaxis de los campos
 			=============================================*/		
 
+
 			if(preg_match('/^[0-9A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,50}$/', $_POST["name-service"] ) ){
 
 
-				/*=============================================
-				Proceso para configurar la galería
-				=============================================*/		
 
-				$galleryNoticie = array();
-				$countNoticie = 0;
-
-				foreach (json_decode($_POST["gallery-service"],true) as $key => $value) {
-					
-					$countNoticie++;
-
-					$fields = array(
-					
-						"file"=>$value["file"],
-						"type"=>$value["type"],
-						"folder"=>"services/".explode("_",$_POST["name-category"])[1]."/gallery",
-						"name"=>$_POST["url-name_service"]."_".mt_rand(100000000, 9999999999),
-						"width"=>$value["width"],
-						"height"=>$value["height"]
-					);
-
-					$saveImageGallery = CurlController::requestFile($fields);
-
-					array_push($galleryNoticie, $saveImageGallery);
-
-				}
-
-				if($countNoticie == count($galleryNoticie)){	
 					/*=============================================
 					Validación Imagen
 					=============================================*/		
@@ -84,6 +60,38 @@ class ServicesController{
 						return;
 					}
 
+
+
+				/*=============================================
+				Proceso para configurar la galería
+				=============================================*/		
+
+				$galleryService = array();
+				$countNoticie = 0;
+
+
+				foreach (json_decode($_POST["gallery-noticie"],true) as $key => $value) {
+					
+					$countNoticie++;
+
+					$fields = array(
+					
+						"file"=>$value["file"],
+						"type"=>$value["type"],
+						"folder"=>"services/".explode("_",$_POST["name-category"])[1]."/gallery",
+						"name"=>$_POST["url-name_service"]."_".mt_rand(100000000, 9999999999),
+						"width"=>$value["width"],
+						"height"=>$value["height"]
+					);
+
+					$saveImageGallery = CurlController::requestFile($fields);
+
+					array_push($galleryService, $saveImageGallery);
+
+				}
+
+				if($countNoticie == count($galleryService)){	
+				
 					/*=============================================
 					Agrupamos data del video
 					=============================================*/		
@@ -382,9 +390,9 @@ class ServicesController{
 						"type_service" => trim($_POST["name-type"]),
 						"id_category_service" => explode("_",$_POST["name-category"])[0],
 						"image_service" => $saveImageservice,
-						"description_service" => trim(TemplateController::htmlClean($_POST["description-service"])),
+						"description_service" => trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-service"]))),
 						"tags_service" => json_encode(explode(",",$_POST["tags-service"])),
-						"gallery_service" => json_encode($galleryNoticie),
+						"gallery_service" => json_encode($galleryService),
 						"video_service" => $video_service,
 						"top_banner_service" => json_encode($topBanner),
 						"default_banner_service" => $saveImageDefaultBanner,
@@ -492,12 +500,12 @@ class ServicesController{
 						$countGallery2 = 0;
 						$continueEdit = false;
 
-						if(!empty($_POST['gallery-service'])){	
+						if(!empty($_POST['gallery-noticie'])){	
 
 							/*=============================================
 							Proceso para configurar la galería
 							=============================================*/		
-							foreach (json_decode($_POST["gallery-service"],true) as $key => $value) {
+							foreach (json_decode($_POST["gallery-noticie"],true) as $key => $value) {
 								
 								$countGallery++;
 
@@ -517,15 +525,15 @@ class ServicesController{
 
 								if($countGallery == count($galleryservice)){
 
-									if(!empty($_POST['gallery-service-old'])){
+									if(!empty($_POST['gallery-noticie-old'])){
 
-										foreach (json_decode($_POST['gallery-service-old'],true) as $key => $value) {
+										foreach (json_decode($_POST['gallery-noticie-old'],true) as $key => $value) {
 
 											$countGallery2++;
 											array_push($galleryservice, $value);
 										}
 
-										if(count(json_decode($_POST['gallery-service-old'],true)) == $countGallery2){
+										if(count(json_decode($_POST['gallery-noticie-old'],true)) == $countGallery2){
 
 						  					$continueEdit = true;
 
@@ -544,17 +552,17 @@ class ServicesController{
 
 						}else{
 
-							if(!empty($_POST['gallery-service-old'])){
+							if(!empty($_POST['gallery-noticie-old'])){
 
 								$countGallery2 = 0;
 
-								foreach (json_decode($_POST['gallery-service-old'],true) as $key => $value) {
+								foreach (json_decode($_POST['gallery-noticie-old'],true) as $key => $value) {
 
 									$countGallery2++;
 									array_push($galleryservice, $value);
 								}
 
-								if(count(json_decode($_POST['gallery-service-old'],true)) == $countGallery2){
+								if(count(json_decode($_POST['gallery-noticie-old'],true)) == $countGallery2){
 
 				  					$continueEdit = true;
 
@@ -568,9 +576,9 @@ class ServicesController{
 			 			Eliminamos archivos basura del servidor
 						=============================================*/
 
-						if(!empty($_POST['delete-gallery-service'])){
+						if(!empty($_POST['delete-gallery-noticie'])){
 
-							foreach (json_decode($_POST['delete-gallery-service'],true) as $key => $value) {
+							foreach (json_decode($_POST['delete-gallery-noticie'],true) as $key => $value) {
 
 								$fields = array(
 								
@@ -907,7 +915,7 @@ class ServicesController{
 							Agrupamos la información 
 							=============================================*/		
 
-							$data = "name_service=".trim(TemplateController::capitalize($_POST["name-service"]))."&url_service=".trim($_POST["url-name_service"])."&link_service=".trim($_POST["link-name_service"])."&type_service=".trim($_POST["name-type"])."&id_category_service=".explode("_",$_POST["name-category"])[0]."&image_service=".$saveImageservice."&description_service=".urlencode(trim(TemplateController::htmlClean($_POST["description-service"])))."&tags_service=".json_encode(explode(",",$_POST["tags-service"]))."&gallery_service=".json_encode($galleryservice)."&video_service=".$video_service."&top_banner_service=".json_encode($topBanner)."&default_banner_service=".$saveImageDefaultBanner."&horizontal_slider_service=".json_encode($hSlider)."&vertical_slider_service=".$saveImageVSlider."&offer_service=".$offer_service;
+							$data = "name_service=".trim(TemplateController::capitalize($_POST["name-service"]))."&url_service=".trim($_POST["url-name_service"])."&link_service=".trim($_POST["link-name_service"])."&type_service=".trim($_POST["name-type"])."&id_category_service=".explode("_",$_POST["name-category"])[0]."&image_service=".$saveImageservice."&description_service=".urlencode(trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-service"]))))."&tags_service=".json_encode(explode(",",$_POST["tags-service"]))."&gallery_service=".json_encode($galleryservice)."&video_service=".$video_service."&top_banner_service=".json_encode($topBanner)."&default_banner_service=".$saveImageDefaultBanner."&horizontal_slider_service=".json_encode($hSlider)."&vertical_slider_service=".$saveImageVSlider."&offer_service=".$offer_service;
 							//$data = "name_service=".trim(TemplateController::capitalize($_POST["name-service"]))."&gallery_service=".json_encode($galleryservice)."&offer_service=".$offer_service;
 							//echo '<pre>'; print_r($data); echo '</pre>';
 							//return;

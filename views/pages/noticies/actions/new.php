@@ -205,7 +205,7 @@
 		            <div class="invalid-feedback">Please fill out this field.</div>
 
 		        </div>
-
+ 
 		        <!--=====================================
                 Palabras Claves
                 ======================================-->
