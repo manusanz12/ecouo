@@ -14,19 +14,56 @@ $fields = array();
 $header = array();
 
 $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results;
-//echo '<pre>'; print_r($NewsHSlider); echo '</pre>';
+
+/*=============================================
+Traer Servicios academicos
+=============================================*/
+
+
+//$randomStart = rand(0, ($totalnews-3));
+$randomStart = 0;
+$tipo_EN="academia";
+$select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
+
+$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&orderMode=ASC&startAt=".$randomStart."&endAt=5&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
+$method = "GET";
+$fields = array();
+$header = array();
+
+$ServicesHSlider = CurlController::request($url, $method, $fields, $header)->results;
+
+
+/*=============================================
+Traer Servicios administrativos
+=============================================*/
+
+
+//$randomStart = rand(0, ($totalnews-3));
+$randomStart = 0;
+$tipo_EN="administrativo";
+$select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
+
+$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&orderMode=ASC&startAt=".$randomStart."&endAt=5&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
+$method = "GET";
+$fields = array();
+$header = array();
+
+$ServicesAdmHSlider = CurlController::request($url, $method, $fields, $header)->results;
+
+
+//echo '<pre>'; print_r($ServicesAdmHSlider); echo '</pre>';
 
 $V_active="active";
 ?>
         
         <!-- START Servicios & eventos-->
-        <h5 class="mt-4 mb-2">Bootstrap Accordion & Carousel</h5>
+        <h5 class="mt-4 mb-2"></h5>
 
         <div class="row">
           <div class="col-md-6">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Collapsible Accordion</h3>
+                <h3 class="card-title">Servicios</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -36,23 +73,25 @@ $V_active="active";
                     <div class="card-header">
                       <h4 class="card-title w-100">
                         <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
-                          Collapsible Group Item #1
+                          Academia
                         </a>
                       </h4>
                     </div>
                     <div id="collapseOne" class="collapse show" data-parent="#accordion">
                       <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                        3
-                        wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-                        laborum
-                        eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
-                        nulla
-                        assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                        nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                        beer
-                        farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                        labore sustainable VHS.
+                          <?php foreach ($ServicesHSlider as $key => $value): ?>
+
+                                <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
+                                    <div class="ps-block--category">
+                                        <a class="ps-block__overlay" href="<?php echo $value->link_service ?>" target="_blank"></a>
+                                        <img src="/views/assets/img/services/<?php echo $value->url_category ?>/<?php echo $value->image_service ?>" alt="<?php echo $value->name_service ?>">
+                                        <p><?php echo $value->name_service ?></p>
+                                    </div>
+                                </div>
+                              
+                          <?php endforeach ?>
+
+                              
                       </div>
                     </div>
                   </div>
@@ -60,50 +99,28 @@ $V_active="active";
                     <div class="card-header">
                       <h4 class="card-title w-100">
                         <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
-                          Collapsible Group Danger
+                          Administrativos
                         </a>
                       </h4>
                     </div>
                     <div id="collapseTwo" class="collapse" data-parent="#accordion">
                       <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                        3
-                        wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-                        laborum
-                        eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
-                        nulla
-                        assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                        nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                        beer
-                        farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                        labore sustainable VHS.
+                      <?php foreach ($ServicesAdmHSlider as $key => $value): ?>
+
+                            <div class="col-xl-2 col-lg-3 col-sm-4 col-6 ">
+                                <div class="ps-block--category">
+                                    <a class="ps-block__overlay" href="<?php echo $value->link_service ?>" target="_blank"></a>
+                                    <img src="/views/assets/img/services/<?php echo $value->url_category ?>/<?php echo $value->image_service ?>" alt="<?php echo $value->name_service ?>">
+                                    <p><?php echo $value->name_service ?></p>
+                                </div>
+                            </div>
+
+                      <?php endforeach ?>
+
                       </div>
                     </div>
                   </div>
-                  <div class="card card-success">
-                    <div class="card-header">
-                      <h4 class="card-title w-100">
-                        <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
-                          Collapsible Group Success
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseThree" class="collapse" data-parent="#accordion">
-                      <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                        3
-                        wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-                        laborum
-                        eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
-                        nulla
-                        assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                        nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                        beer
-                        farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                        labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
               <!-- /.card-body -->
