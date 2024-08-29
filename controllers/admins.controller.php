@@ -66,13 +66,13 @@ class AdminsController{
 					=============================================*/	
 
 					
-					if($response->results[0]->id_role_user == "1" || $response->results[0]->id_role_user == "2"){
+					/*if($response->results[0]->id_role_user == "1" || $response->results[0]->id_role_user == "2"){
 
 						echo ' <div class="alert alert-danger">You do not have permissions to access</div>';
 						return;
-					}
+					}*/
 
-
+					
 
 
 					/*=============================================
