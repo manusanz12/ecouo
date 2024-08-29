@@ -18,6 +18,33 @@ class NoticiesController{
 			</script>';
 
 			/*=============================================
+			Validamos los planteles
+			=============================================*/
+			$plantelespermitidos= array();
+			if (isset($_POST['planteles'])) {
+				$opcionesSeleccionadas = $_POST['planteles'];
+			
+				// Recorrer las opciones seleccionadas
+				foreach ($opcionesSeleccionadas as $opcion) {
+					//echo "Has seleccionado: " . htmlspecialchars($opcion) . "<br>";
+					array_push($plantelespermitidos, $opcion);
+				}
+			}
+
+			if(count($plantelespermitidos) > 0){
+
+				$plantelespermitidos = json_encode($plantelespermitidos);
+				
+
+			}else{
+
+				$plantelespermitidos = null;
+
+			   
+			}
+			
+
+			/*=============================================
 			Validamos la sintaxis de los campos
 			=============================================*/		
 
@@ -403,6 +430,7 @@ class NoticiesController{
 						"horizontal_slider_noticie"=>json_encode($hSlider),
 						"vertical_slider_noticie"=>$saveImageVSlider,
 						"offer_noticie" => trim($_POST["date_offer"]),
+						"campus_noticie" => $plantelespermitidos,
 						"date_created_noticie" => date("Y-m-d")
 
 					);
@@ -494,6 +522,33 @@ class NoticiesController{
 				$response = CurlController::request($url,$method,$fields);
 
 				if($response->status == 200){
+
+					
+					/*=============================================
+					Validamos los planteles
+					=============================================*/
+					$plantelespermitidos= array();
+					if (isset($_POST['planteles'])) {
+						$opcionesSeleccionadas = $_POST['planteles'];
+					
+						// Recorrer las opciones seleccionadas
+						foreach ($opcionesSeleccionadas as $opcion) {
+							//echo "Has seleccionado: " . htmlspecialchars($opcion) . "<br>";
+							array_push($plantelespermitidos, $opcion);
+						}
+					}
+
+					if(count($plantelespermitidos) > 0){
+
+						$plantelespermitidos = json_encode($plantelespermitidos);
+						
+
+					}else{
+
+						$plantelespermitidos = null;
+
+					
+					}
 
 					/*=============================================
 					Validamos la sintaxis de los campos
@@ -919,7 +974,7 @@ class NoticiesController{
 							Agrupamos la información 
 							=============================================*/		
 							
-							$data = "name_noticie=".trim(TemplateController::capitalize($_POST["name-noticie"]))."&url_noticie=".trim($_POST["url-name_noticie"])."&link_noticie=".trim($_POST["link-name_noticie"])."&type_noticie=".trim($_POST["name-type"])."&id_category_noticie=".explode("_",$_POST["name-category"])[0]."&image_noticie=".$saveImagenoticie."&description_noticie=".urlencode(trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-noticie"]))))."&tags_noticie=".json_encode(explode(",",$_POST["tags-noticie"]))."&gallery_noticie=".json_encode($gallerynoticie)."&video_noticie=".$video_noticie."&top_banner_noticie=".json_encode($topBanner)."&default_banner_noticie=".$saveImageDefaultBanner."&horizontal_slider_noticie=".json_encode($hSlider)."&vertical_slider_noticie=".$saveImageVSlider."&offer_noticie=".$offer_noticie;
+							$data = "name_noticie=".trim(TemplateController::capitalize($_POST["name-noticie"]))."&url_noticie=".trim($_POST["url-name_noticie"])."&link_noticie=".trim($_POST["link-name_noticie"])."&type_noticie=".trim($_POST["name-type"])."&id_category_noticie=".explode("_",$_POST["name-category"])[0]."&image_noticie=".$saveImagenoticie."&description_noticie=".urlencode(trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-noticie"]))))."&tags_noticie=".json_encode(explode(",",$_POST["tags-noticie"]))."&gallery_noticie=".json_encode($gallerynoticie)."&video_noticie=".$video_noticie."&top_banner_noticie=".json_encode($topBanner)."&default_banner_noticie=".$saveImageDefaultBanner."&horizontal_slider_noticie=".json_encode($hSlider)."&vertical_slider_noticie=".$saveImageVSlider."&offer_noticie=".$offer_noticie."&campus_noticie=".$plantelespermitidos;
 							//$data = "name_noticie=".trim(TemplateController::capitalize($_POST["name-noticie"]))."&gallery_noticie=".json_encode($gallerynoticie)."&offer_noticie=".$offer_noticie;
 							//echo '<pre>'; print_r($data); echo '</pre>';
 							//return;

@@ -11,12 +11,38 @@ class ServicesController{
 		if(isset($_POST["name-service"])){
 			
 
-		/*	echo '<script>
+			echo '<script>
 
 				matPreloader("on");
 				fncSweetAlert("loading", "Loading...", "");
 
-			</script>';*/
+			</script>';
+
+			/*=============================================
+			Validamos los planteles
+			=============================================*/
+			$plantelespermitidos= array();
+			if (isset($_POST['planteles'])) {
+				$opcionesSeleccionadas = $_POST['planteles'];
+			
+				// Recorrer las opciones seleccionadas
+				foreach ($opcionesSeleccionadas as $opcion) {
+					//echo "Has seleccionado: " . htmlspecialchars($opcion) . "<br>";
+					array_push($plantelespermitidos, $opcion);
+				}
+			}
+
+			if(count($plantelespermitidos) > 0){
+
+				$plantelespermitidos = json_encode($plantelespermitidos);
+				
+
+			}else{
+
+				$plantelespermitidos = null;
+
+			   
+			}
 
 
 			/*=============================================
@@ -399,6 +425,7 @@ class ServicesController{
 						"horizontal_slider_service"=>json_encode($hSlider),
 						"vertical_slider_service"=>$saveImageVSlider,
 						"offer_service" => trim($_POST["date_offer"]),
+						"campus_service" => $plantelespermitidos,
 						"date_created_service" => date("Y-m-d")
 
 					);
@@ -490,6 +517,32 @@ class ServicesController{
 				$response = CurlController::request($url,$method,$fields);
 
 				if($response->status == 200){
+
+					/*=============================================
+					Validamos los planteles
+					=============================================*/
+					$plantelespermitidos= array();
+					if (isset($_POST['planteles'])) {
+						$opcionesSeleccionadas = $_POST['planteles'];
+					
+						// Recorrer las opciones seleccionadas
+						foreach ($opcionesSeleccionadas as $opcion) {
+							//echo "Has seleccionado: " . htmlspecialchars($opcion) . "<br>";
+							array_push($plantelespermitidos, $opcion);
+						}
+					}
+
+					if(count($plantelespermitidos) > 0){
+
+						$plantelespermitidos = json_encode($plantelespermitidos);
+						
+
+					}else{
+
+						$plantelespermitidos = null;
+
+					
+					}
 
 					/*=============================================
 					Validamos la sintaxis de los campos
@@ -915,7 +968,7 @@ class ServicesController{
 							Agrupamos la información 
 							=============================================*/		
 
-							$data = "name_service=".trim(TemplateController::capitalize($_POST["name-service"]))."&url_service=".trim($_POST["url-name_service"])."&link_service=".trim($_POST["link-name_service"])."&type_service=".trim($_POST["name-type"])."&id_category_service=".explode("_",$_POST["name-category"])[0]."&image_service=".$saveImageservice."&description_service=".urlencode(trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-service"]))))."&tags_service=".json_encode(explode(",",$_POST["tags-service"]))."&gallery_service=".json_encode($galleryservice)."&video_service=".$video_service."&top_banner_service=".json_encode($topBanner)."&default_banner_service=".$saveImageDefaultBanner."&horizontal_slider_service=".json_encode($hSlider)."&vertical_slider_service=".$saveImageVSlider."&offer_service=".$offer_service;
+							$data = "name_service=".trim(TemplateController::capitalize($_POST["name-service"]))."&url_service=".trim($_POST["url-name_service"])."&link_service=".trim($_POST["link-name_service"])."&type_service=".trim($_POST["name-type"])."&id_category_service=".explode("_",$_POST["name-category"])[0]."&image_service=".$saveImageservice."&description_service=".urlencode(trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-service"]))))."&tags_service=".json_encode(explode(",",$_POST["tags-service"]))."&gallery_service=".json_encode($galleryservice)."&video_service=".$video_service."&top_banner_service=".json_encode($topBanner)."&default_banner_service=".$saveImageDefaultBanner."&horizontal_slider_service=".json_encode($hSlider)."&vertical_slider_service=".$saveImageVSlider."&offer_service=".$offer_service."&campus_service=".$plantelespermitidos;
 							//$data = "name_service=".trim(TemplateController::capitalize($_POST["name-service"]))."&gallery_service=".json_encode($galleryservice)."&offer_service=".$offer_service;
 							//echo '<pre>'; print_r($data); echo '</pre>';
 							//return;

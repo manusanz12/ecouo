@@ -955,6 +955,49 @@
 
 		        </div>
 
+
+				<!--=====================================
+		                Planteles
+						======================================-->
+
+						<?php 
+
+							$url = "campuses?select=id_campus,name_campus,shortname_campus";
+							$method = "GET";
+							$fields = array();
+
+							$campuses = CurlController::request($url, $method, $fields)->results;
+
+						?>
+					
+						<div class="form-group mt-2">
+							
+							<label>Planteles</label>
+
+							<?php foreach ($campuses as $key => $value): ?>	
+
+								<?php 
+								$p_activo = "";
+								foreach (json_decode($service->campus_service, true) as $plantel) {
+									
+									if($plantel == $value->shortname_campus){
+
+										$p_activo = "checked";
+									}
+								}
+								?>	
+
+							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+							<input type="checkbox" class="custom-control-input" id="<?php echo $value->shortname_campus ?>" name="planteles[]" value="<?php echo $value->shortname_campus ?>" <?php echo $p_activo ?>>
+							<label class="custom-control-label" for="<?php echo $value->shortname_campus ?>"><?php echo $value->name_campus ?></label>
+							</div>
+							
+							<?php endforeach ?>
+
+							
+
+						</div>
+
 			</div>
 		
 		</div>
