@@ -1,11 +1,11 @@
 <?php 
 	
 
-
 	if(isset($routesArray[3])){
 		
 		$security = explode("~",base64_decode($routesArray[3]));
-	
+
+		
 		if($security[1] == $_SESSION["admin"]->token_user){
 
 			$select = "id_user,matricula_user,name_user,ap_user,am_user,emailpersonal_user,email_user,picture_user,id_datauser,phone_datauser,movil_datauser,address_datauser,postalcode_datauser,sex_datauser,tiposangre_datauser,pais_datauser,state_datauser,town_datauser,age_datauser,nationality_datauser,id_role_user,id_campus_user,id_role,name_role,id_campus,name_campus";
@@ -15,7 +15,8 @@
 			$fields = array();
 
 			$response = CurlController::request($url,$method,$fields);
-			
+			echo '<pre>'; print_r($url); echo '</pre>';
+			return;
 			if($response->status == 200){
 
 				$admin = $response->results[0];

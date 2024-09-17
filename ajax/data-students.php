@@ -182,7 +182,7 @@ class DatatableController{
 						else{
 							$actions ="";
 						}
-					}		
+					}		 
 						if (isset($p_update)){			
 							$actions .= "<a href='/students/edit/".base64_encode($value->id_user."~".$_GET["token"])."' class='btn btn-warning btn-sm mr-1 rounded-circle'>
 							

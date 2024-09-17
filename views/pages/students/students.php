@@ -52,7 +52,7 @@
         include "actions/list.php";
     
     }
-
+ 
     ?>
   
   </div>
