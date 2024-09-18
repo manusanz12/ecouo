@@ -48,10 +48,12 @@ require "views/modules/pvalidate.php";
              Validar modulos
             ***********************************************/
             $m_superadmins=Pvalidate::Validatemodule("Super Admin");
-           $m_admins=Pvalidate::Validatemodule("Admins");
+            $m_admins=Pvalidate::Validatemodule("Admins");
             $m_teachers=Pvalidate::Validatemodule("Students");
             $m_students=Pvalidate::Validatemodule("Teachers");
             $m_catalogue=Pvalidate::Validatemodule("Catalogue");
+            $m_dteachers=Pvalidate::Validatemodule("D_Teachers");
+            $m_dstudents=Pvalidate::Validatemodule("D_Students");
 
            
 
@@ -149,12 +151,11 @@ require "views/modules/pvalidate.php";
                               </p>
                             </a>
                           </li>
-                          
+                  </ul>
+                </li>        
           <?php endif ?>
          
-                  </ul>
- 
-                </li>
+
 
           <?php if (isset($m_catalogue)): ?>
                 <li class="nav-item">
@@ -190,14 +191,47 @@ require "views/modules/pvalidate.php";
                             </p>
                           </a>
                         </li>
-                          
+                  </ul>
+                </li>        
                           
           <?php endif ?>
          
-                  </ul>
- 
-                </li>
          
+
+          
+          <?php if (isset($m_dteachers) || isset($m_catalogue)): ?>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-circle"></i>
+                    <p>
+                      Dashboard Maestros
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                            <a href="perfiles" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "perfiles"): ?>active<?php endif ?>">
+                              <i class="nav-icon fas fa-user"></i>
+                              <p>
+                                Perfil
+                              </p>
+                            </a>
+                          </li>
+                    
+                          <li class="nav-item">
+                            <a href="servicios" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "servicios"): ?>active<?php endif ?>">
+                              <i class="nav-icon fas fa-list"></i>
+                              <p>
+                                Servicios
+                              </p>
+                            </a>
+                          </li>
+                          
+                  </ul>
+                </li>          
+          <?php endif ?>
+         
+
 
           <!--
          

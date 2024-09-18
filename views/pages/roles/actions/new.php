@@ -101,6 +101,16 @@
                       <label class="custom-control-label" for="customCatalogue">Catálogos</label>
                     </div>
 
+					<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                      <input type="checkbox" class="custom-control-input" id="customDteachers" name="m_dteachers">
+                      <label class="custom-control-label" for="customDteachers">Dashboard Maestro</label>
+                    </div>
+
+					<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                      <input type="checkbox" class="custom-control-input" id="customDstudents" name="m_dstudents">
+                      <label class="custom-control-label" for="customDstudents">Dashboard Estudiante</label>
+                    </div>
+
 				</div>
 							
 			</div>

@@ -105,6 +105,16 @@ class RolesController{
 					array_push($modulesuser, ["Catalogue"]);
 
 				}
+				if(isset($_POST["m_dteachers"])){	
+
+					array_push($modulesuser, ["D_Teachers"]);
+
+				}
+				if(isset($_POST["m_dstudents"])){	
+
+					array_push($modulesuser, ["D_Students"]);
+
+				}
 
 
 				if(count($modulesuser) > 0){
@@ -307,6 +317,16 @@ class RolesController{
 
 								array_push($modulesuser, ["Catalogue"]);
 
+							}
+							if(isset($_POST["m_dteachers"])){	
+
+								array_push($modulesuser, ["D_Teachers"]);
+			
+							}
+							if(isset($_POST["m_dstudents"])){	
+			
+								array_push($modulesuser, ["D_Students"]);
+			
 							}
 
 
