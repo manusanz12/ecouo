@@ -1,14 +1,44 @@
 <?php 
+//$url = "relations?rel=noticies,categories&type=noticie,category&linkTo=id_noticie&equalTo=".$randomId."&select=url_category,top_banner_noticie,url_noticie";
 
-$randomId = rand(1, $totalnews);
 
-$url = "relations?rel=noticies,categories&type=noticie,category&linkTo=id_noticie&equalTo=".$randomId."&select=url_category,top_banner_noticie,url_noticie";
+/*$validacion_topbanner=0;
+while($validacion_topbanner!=200){
+    $randomId = rand(1, $totalnews);
+   
+    $url = "relations?rel=noticies,categories&type=noticie,category&select=url_category,id_noticie,top_banner_noticie,url_noticie,campus_noticie&linkTo=campus_noticie&search=".$_SESSION['validates']->shortname_campus."";
+    $method = "GET";
+    $fields = array();
+    $header = array();
+    $validacion_topbanner = CurlController::request($url, $method, $fields, $header)->status;
+}*/
+
+
+
+$url = "relations?rel=noticies,categories&type=noticie,category&select=url_category,id_noticie,top_banner_noticie,url_noticie,campus_noticie&linkTo=campus_noticie&search=".$_SESSION['validates']->shortname_campus."";
 $method = "GET";
 $fields = array();
 $header = array();
+$randomNews_D = CurlController::request($url, $method, $fields, $header);
 
+foreach ($randomNews_D->results as $result) {
+
+    $idArray[] = $result->id_noticie;
+    
+}
+
+// Elegir un ID al azar
+$randomKey = array_rand($idArray);
+$randomId = $idArray[$randomKey];
+
+
+$url = "relations?rel=noticies,categories&type=noticie,category&select=url_category,id_noticie,top_banner_noticie,url_noticie,campus_noticie&linkTo=campus_noticie,id_noticie&search=".$_SESSION['validates']->shortname_campus.",".$randomId;
+$method = "GET";
+$fields = array();
+$header = array();
 $randomNews = CurlController::request($url, $method, $fields, $header)->results[0];
 $topBanner = json_decode($randomNews->top_banner_noticie, true);
+
 ?>
     
     

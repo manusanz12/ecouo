@@ -238,7 +238,7 @@
 		            $fields = array();
 
 		            $campuses = CurlController::request($url, $method, $fields)->results; 
-
+					
 		            ?>
 
 		            <div class="form-group my-4__content">
@@ -254,14 +254,14 @@
 
 			                    <?php if ($value->id_campus == $admin->id_campus_user): ?>
 
-			                    	<option value="<?php echo $admin->id_campus_user ?>" selected><?php echo $value->name_campus ?></option>
+									<option value="<?php echo $admin->id_campus_user ?>" selected><?php echo $value->name_campus ?></option>
 
 			                    <?php else: ?>
 
-			                    	<option value="<?php echo $value->id_campus ?>"><?php echo $value->name_campus ?></option>
+			                    	<option value="<?php echo $value->id_campus ?>"><?php  echo $value->name_campus ?></option>
 		
 			                    <?php endif ?>	
-                  
+								
 		                    <?php endforeach ?>
 
 		                </select> 

@@ -71,64 +71,65 @@ $teachers = 0;
 
 ?>
 
+<?php if ($_SESSION["admin"]->id_role_user==10): ?>
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
 
-<div class="row">
-  <div class="col-12 col-sm-6 col-md-3">
-    <div class="info-box">
-      <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
-
-      <div class="info-box-content">
-        <span class="info-box-text">Administrativo activos</span>
-        <span class="info-box-number">
-          <?php echo $admons ?>
-        </span>
+          <div class="info-box-content">
+            <span class="info-box-text">Administrativo activos</span>
+            <span class="info-box-number">
+              <?php echo $admons ?>
+            </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
       </div>
-      <!-- /.info-box-content -->
-    </div>
-    <!-- /.info-box -->
-  </div>
-  <!-- /.col -->
-  <div class="col-12 col-sm-6 col-md-3">
-    <div class="info-box mb-3">
-      <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-store"></i></span>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-store"></i></span>
 
-      <div class="info-box-content">
-        <span class="info-box-text">Bajas de estudiantes</span>
-        <span class="info-box-number"><?php echo $users ?></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Bajas de estudiantes</span>
+            <span class="info-box-number"><?php echo $users ?></span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
       </div>
-      <!-- /.info-box-content -->
-    </div>
-    <!-- /.info-box -->
-  </div>
-  <!-- /.col -->
+      <!-- /.col -->
 
-  <!-- fix for small devices only -->
-  <div class="clearfix hidden-md-up"></div>
+      <!-- fix for small devices only -->
+      <div class="clearfix hidden-md-up"></div>
 
-  <div class="col-12 col-sm-6 col-md-3">
-    <div class="info-box mb-3">
-      <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
-      <div class="info-box-content">
-        <span class="info-box-text">Estudiantes activos</span>
-        <span class="info-box-number"><?php echo $usersok ?></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Estudiantes activos</span>
+            <span class="info-box-number"><?php echo $usersok ?></span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
       </div>
-      <!-- /.info-box-content -->
-    </div>
-    <!-- /.info-box -->
-  </div>
-  <!-- /.col -->
-  <div class="col-12 col-sm-6 col-md-3">
-    <div class="info-box mb-3">
-      <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
-      <div class="info-box-content">
-        <span class="info-box-text">Docentes activos</span>
-        <span class="info-box-number"><?php echo $teachers ?></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Docentes activos</span>
+            <span class="info-box-number"><?php echo $teachers ?></span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
       </div>
-      <!-- /.info-box-content -->
+      <!-- /.col -->
     </div>
-    <!-- /.info-box -->
-  </div>
-  <!-- /.col -->
-</div>
+<?php endif ?>

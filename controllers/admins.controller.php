@@ -11,7 +11,7 @@ class AdminsController{
 		if(isset($_POST["loginEmail"])){
 
 			//////////// animación de carga de inicio ///////////////////////
-			echo '<script>
+			/*echo '<script>
 
 				matPreloader("on");
 				fncSweetAlert("loading", "Loading...", "");
@@ -37,7 +37,6 @@ class AdminsController{
 				);
 
 				$response = CurlController::request($url,$method,$fields);
-
 				
 
 				/*=============================================
@@ -49,17 +48,18 @@ class AdminsController{
 					/*=============================================
 					Validamos que permisos y modulos tiene acceso el user
 					=============================================*/	
-
+					$Id_user=$response->results[0]->id_user;
 					$id_roles=$response->results[0]->id_role_user;
-					$url = "relations?rel=users,roles&type=user,role&select=id_user,id_role_user,id_role,name_role,area_role,permit_role,module_role&linkTo=id_role_user&search=".$id_roles;
-
+					//$Id_campus=$response->results[0]->id_campus_user;
+					
+					//$url = "relations?rel=users,roles,campuses&type=user,role,campus&select=id_user,id_role_user,id_role,name_role,area_role,permit_role,module_role,id_campus,name_campus,shortname_campus&linkTo=id_user&search=".$Id_user;
+					$url = "relations?rel=users,roles,campuses&type=user,role,campus&select=id_user,id_role_user,id_role,name_role,area_role,permit_role,module_role,id_campus,name_campus,shortname_campus&linkTo=id_user&equalTo=".$Id_user;
 					$method = "GET";
 					$fields = array();
 
 					$response2 = CurlController::request($url,$method,$fields);  
 					
 					$_SESSION["validates"] = $response2->results[0];
-
 					
 					/*=============================================
 					Validamos que si tenga rol administrativo
@@ -80,7 +80,6 @@ class AdminsController{
 					=============================================*/	
 
 					$_SESSION["admin"] = $response->results[0];
-
 									
 					echo '<script>
 

@@ -6,15 +6,15 @@ Traer noticias aleatoriamente
 
 $randomStart = rand(0, ($totalnews-3));
 
-$select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie";
+$select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie,campus_noticie";
+$url = "relations?rel=noticies,categories&type=noticie,category&orderBy=id_noticie&orderMode=ASC&startAt=".$randomStart."&endAt=2&linkTo=campus_noticie&search=".$_SESSION['validates']->shortname_campus."&select=".$select;
 
-$url = "relations?rel=noticies,categories&type=noticie,category&orderBy=id_noticie&orderMode=ASC&startAt=".$randomStart."&endAt=2&select=".$select;
 $method = "GET";
 $fields = array();
 $header = array();
 
 $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results;
-//echo '<pre>'; print_r($NewsHSlider); echo '</pre>';
+
 
 
 ?>
