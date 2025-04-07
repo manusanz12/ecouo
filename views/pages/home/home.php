@@ -35,13 +35,13 @@ if($datanews->status == 200){
         <!--=====================================
         Header Promotion
         ======================================-->
-      <?php include "top_banner.php" ?>
+      <!--<?php include "top_banner.php" ?>-->
 
       <!--=====================================
         Header
         ======================================-->  
 
-        <?php include "header_home.php" ?>
+        <!--<?php include "header_home.php" ?>-->
 
 
       <!--=====================================

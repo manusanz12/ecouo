@@ -1,3 +1,6 @@
+    <?php
+    /* quitar las etiquetas de PHP pues es en html*/
+    /*echo '
     <header class="header header--standard header--market-place-4" data-sticky="true">
 
     	<!--=====================================
@@ -63,19 +66,15 @@
 				======================================-->
 
                 <div class="header__content-center">
-                    <form class="ps-form--quick-search" action="index.html" method="get">
-                        <!--<div class="form-group--icon">
-                        	<i class="icon-chevron-down"></i>
-                            <select class="form-control">
-                                <option value="1">All</option>
-                                <option value="1">Servicios</option>
-                                <option value="1">Eventos</option>
-                                
-                            </select>
-                        </div>-->
-                        <input class="form-control" type="text" placeholder="I'm shopping for...">
-                        <button>Search</button>
+
+                    <form class="ps-form--quick-search">
+                    
+                        <input class="form-control inputSearch" type="text" placeholder="¿Que quiero buscar?....">
+
+                        <button id="btnSearch_enter" type="button" class="btnSearch" path="<?php echo $path ?>">Buscar</button>
+
                     </form>
+                    
                 </div>
 
                 <div class="header__content-right">
@@ -88,5 +87,7 @@
 
         </div><!-- End Header Content-->
 
-    </header>
+    </header>';*/
+
+    ?>
 

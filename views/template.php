@@ -13,17 +13,165 @@ Capturar las rutas de la URL
 
 $routesArray = explode("/", $_SERVER['REQUEST_URI']);
 $routesArray = array_filter($routesArray);
-
+echo '<pre>'; print_r($routesArray); echo '</pre>';
 /*=============================================
 Limpiar la Url de variables GET
 =============================================*/
-foreach ($routesArray as $key => $value) {
+/*foreach ($routesArray as $key => $value) {
 
   $value = explode("?", $value)[0];
   $routesArray[$key] = $value;
-  
+    
+}*/
+
+
+/*=============================================
+Traer el total de noticias y eventos
+=============================================*/
+
+$url = "noticies?select=id_noticie";
+$method = "GET";
+$fields = array();
+$header = array();
+
+$datanews = CurlController::request($url, $method, $fields, $header);
+
+
+
+if($datanews->status == 200){
+
+    $totalnews = $datanews->total;
+
+}else{
+
+    $totalnews = 0;
+}
+
+if(!empty(array_filter($routesArray)[1])){
+
+  $urlGet = explode("?", array_filter($routesArray)[1]);
+
+  $urlParams = explode("&", $urlGet[0]);		
   
 }
+
+
+
+if(!empty($urlParams[0])){
+
+        /*=============================================
+				Validar si hay parámetros de paginación
+				=============================================*/
+				if(isset($urlParams[1])){
+
+					if(is_numeric($urlParams[1])){
+
+
+						$startAt = ($urlParams[1]*6) - 6;
+
+					}else{
+
+					 	$startAt = null;
+
+					}
+
+				}else{
+
+					$startAt = 0;
+				}
+
+				/*=============================================
+				Validar si hay parámetros de orden
+				=============================================*/
+
+				if(isset($urlParams[2])){
+
+					if(is_string($urlParams[2])){
+
+						if($urlParams[2] == "new"){
+
+							$orderBy = "id_noticie";
+							$orderMode = "DESC";
+
+						}
+
+						else if($urlParams[2] == "latest"){
+
+							$orderBy = "id_noticie";
+							$orderMode = "ASC";
+
+						}
+
+						else if($urlParams[2] == "low"){
+
+							$orderBy = "id_noticie";
+							$orderMode = "ASC";
+
+						}
+
+						else if($urlParams[2] == "high"){
+
+							$orderBy = "id_noticie";
+							$orderMode = "DESC";
+
+						}else{
+
+							$orderBy = "id_noticie";
+							$orderMode = "DESC";
+
+						}
+
+					}else{
+						
+						$orderBy = "id_noticie";
+						$orderMode = "DESC";
+
+					}
+
+				}else{
+
+					$orderBy = "id_noticie";
+					$orderMode = "DESC";
+				}
+
+        $linkTo = ["name_noticie","tags_noticie","description_noticie","url_noticie"];
+				$select = "id_noticie,state_noticie,url_noticie,url_category,image_noticie,name_noticie,url_noticie,name_category,offer_noticie,description_noticie,tags_noticie,gallery_noticie,top_banner_noticie,default_banner_noticie,horizontal_slider_noticie,vertical_slider_noticie,video_noticie,views_noticie,reviews_noticie,date_created_noticie";
+
+				foreach ($linkTo  as $key => $value) {
+
+					/*=============================================
+			    	Filtrar tabla noticias y eventos con el parámetro URL de búsqueda
+			    	=============================================*/
+
+				    $url = "relations?rel=noticies,categories&type=noticie,category&linkTo=".$value.",&search=".$urlParams[0].",show&orderBy=".$orderBy."&orderMode=".$orderMode."&startAt=".$startAt."&endAt=12&select=".$select;
+				    $method = "GET";
+				    $fields = array();
+				    $header = array();
+            
+				    $urlSearch = CurlController::request($url, $method, $fields, $header);
+            
+            
+				   	
+					if($urlSearch->status != 404){
+
+						$select = "id_product";
+
+						$url = "relations?rel=noticies,categories&type=noticie,category&linkTo=".$value.",&search=".$urlParams[0].",show&select=".$select;
+
+						$totalSearch = CurlController::request($url, $method, $fields, $header)->total;
+
+						break;
+
+					}
+				
+				}
+
+}
+
+
+
+
+
 
 ?>
 
@@ -123,8 +271,9 @@ foreach ($routesArray as $key => $value) {
              $routesArray[1] == "categories" ||
              $routesArray[1] == "noticies" ||
              $routesArray[1] == "services" ||
-             $routesArray[1] == "periods"||
-             $routesArray[1] == "servicios"||
+             $routesArray[1] == "periods" ||
+             $routesArray[1] == "servicios" ||
+             $routesArray[1] == "search" ||
              $routesArray[1] == "perfiles"): ?>
      
         <!-- DataTables  & Plugins -->
@@ -213,7 +362,8 @@ foreach ($routesArray as $key => $value) {
          $routesArray[1] == "noticies" ||
          $routesArray[1] == "services" ||
          $routesArray[1] == "logout" ||
-         $routesArray[1] == "servicios" ||
+         $routesArray[1] == "servicios"||
+         $routesArray[1] == "search" ||
          $routesArray[1] == "perfiles"){
           
         include "views/pages/".$routesArray[1]."/".$routesArray[1].".php";
@@ -245,6 +395,12 @@ foreach ($routesArray as $key => $value) {
 <?php endif ?>
 
 <script src="views/assets/custom/forms/forms.js"></script>
+
+<!--=====================================
+	JS PERSONALIZADO
+	======================================-->
+
+	<script src="views/assets/plugins/main.js"></script>
 
 </body>
 </html>
