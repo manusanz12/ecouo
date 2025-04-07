@@ -13,7 +13,7 @@ Capturar las rutas de la URL
 
 $routesArray = explode("/", $_SERVER['REQUEST_URI']);
 $routesArray = array_filter($routesArray);
-echo '<pre>'; print_r($routesArray); echo '</pre>';
+//echo '<pre>'; print_r($routesArray); echo '</pre>';
 /*=============================================
 Limpiar la Url de variables GET
 =============================================*/
