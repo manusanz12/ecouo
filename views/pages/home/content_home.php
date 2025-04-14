@@ -73,7 +73,8 @@ $V_active="active";
                                   <img src="/views/assets/img/services/<?php echo $value->url_category ?>/<?php echo $value->image_service ?>" alt="<?php echo $value->name_service ?>">
                                   <p><?php echo $value->name_service ?></p>
                                   </a> 
-                                <?php endforeach ?> 
+                                <?php endforeach ?>
+                                 <a href="administrativos" class="btn-mas">Ver más</a>
                             </div>      
                           </div>
                           
@@ -88,6 +89,7 @@ $V_active="active";
                                     <p><?php echo $value->name_service ?></p>
                                     </a> 
                                   <?php endforeach ?> 
+                                  <a href="servicios" class="btn-mas">Ver más</a>
                             </div>
                           </div>
                         </div>
