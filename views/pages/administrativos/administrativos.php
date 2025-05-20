@@ -63,8 +63,10 @@ $ServicesAdmHSlider = CurlController::request($url, $method, $fields, $header)->
 
   <div class="container-fluid">
         <div class="row">
-            <?php foreach ($ServicesAdmHSlider as $key => $value): ?>  
+            <?php foreach ($ServicesAdmHSlider as $key => $value): ?>
+                
                 <div class="col-12 col-sm-6 col-md-3">
+                <a href="<?php echo $value->link_service ?>" target="_blank">    
                     <div class="info-box">
                     <span class="info-box-icon bg-info elevation-1"><img src="/views/assets/img/services/<?php echo $value->url_category ?>/<?php echo $value->image_service ?>" alt="<?php echo $value->name_service ?>"></span>
                     
@@ -75,6 +77,7 @@ $ServicesAdmHSlider = CurlController::request($url, $method, $fields, $header)->
                     <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
+                </a>     
                 </div>
             <?php endforeach ?>
             <!-- /.col -->

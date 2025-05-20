@@ -59,22 +59,25 @@ $ServicesHSlider = CurlController::request($url, $method, $fields, $header)->res
 
 <!-- Main content -->
 <section class="content pb-1">
-
+ 
   <div class="container-fluid">
         <div class="row">
             <?php foreach ($ServicesHSlider as $key => $value): ?>  
                 <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
+                <a href="<?php echo $value->link_service ?>" target="_blank">    
+                <div class="info-box">
                     <span class="info-box-icon bg-info elevation-1"><img src="/views/assets/img/services/<?php echo $value->url_category ?>/<?php echo $value->image_service ?>" alt="<?php echo $value->name_service ?>"></span>
                     
 
                     <div class="info-box-content">
-                        <span class="info-box-text"><?php echo $value->name_service ?></span>
+                      <span class="info-box-text"><?php echo $value->name_service ?></span>
                     </div>
                     <!-- /.info-box-content -->
                     </div>
                     <!-- /.info-box -->
+                </a>     
                 </div>
+                
             <?php endforeach ?>
             <!-- /.col -->
             

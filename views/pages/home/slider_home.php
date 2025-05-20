@@ -6,7 +6,7 @@ Traer noticias aleatoriamente
 
 $randomStart = rand(0, ($totalnews-3));
 
-$select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie,campus_noticie";
+$select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie,link_noticie,campus_noticie";
 $url = "relations?rel=noticies,categories&type=noticie,category&orderBy=id_noticie&orderMode=ASC&startAt=".$randomStart."&endAt=2&linkTo=campus_noticie&search=".$_SESSION['validates']->shortname_campus."&select=".$select;
 
 $method = "GET";
@@ -50,7 +50,8 @@ $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results
                                     <?php echo $hSlider["H3-2 tag"] ?><br/> 
                                     <p> <?php echo $hSlider["H3-3 tag"] ?> <strong>  <?php echo $hSlider["H3-4s tag"] ?></strong></p>
                                 </h3>
-                                <a class="ps-btn" href="<?php echo $path.$value->url_product ?>"> <?php echo $hSlider["Button tag"] ?></a>
+                                <!--<a class="ps-btn" href="<?php echo $path.$value->link_noticie ?>"> <?php echo $hSlider["Button tag"] ?></a>-->
+                                <a class="ps-btn" href="<?php echo $value->link_noticie ?>" target="_blank"> <?php echo $hSlider["Button tag"] ?></a>
                                 </div>
                         </div>        
                     </div>
