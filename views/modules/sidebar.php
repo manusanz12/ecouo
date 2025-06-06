@@ -204,12 +204,12 @@ require "views/modules/pvalidate.php";
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle"></i>
                     <p>
-                      Dashboard Maestros
+                      Dashboard 
                       <i class="right fas fa-angle-left"></i>
                     </p>
                   </a>
                   <ul class="nav nav-treeview">
-                         <li class="nav-item">
+                          <li class="nav-item">
                             <a href="perfiles" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "perfiles"): ?>active<?php endif ?>">
                               <i class="nav-icon fas fa-user"></i>
                               <p>
@@ -222,7 +222,15 @@ require "views/modules/pvalidate.php";
                             <a href="servicios" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "servicios"): ?>active<?php endif ?>">
                               <i class="nav-icon fas fa-list"></i>
                               <p>
-                                Servicios
+                                Servicios Académicos
+                              </p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="administrativos" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "administrativos"): ?>active<?php endif ?>">
+                              <i class="nav-icon fas fa-list"></i>
+                              <p>
+                                Servicios Administrativos
                               </p>
                             </a>
                           </li>
