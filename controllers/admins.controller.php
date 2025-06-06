@@ -80,6 +80,7 @@ class AdminsController{
 					=============================================*/	
 
 					$_SESSION["admin"] = $response->results[0];
+					$_SESSION["user"] = $response->results[0];
 									
 					echo '<script>
 
@@ -472,6 +473,204 @@ class AdminsController{
 				
 			}
 		}
+
+	}
+
+	/*=============================================
+	Cambiar contraseña
+	=============================================*/	
+
+	public function changePassword(){
+
+		if(isset($_POST["changePassword"])){
+
+			/*=============================================
+			Validamos la sintaxis de los campos
+			=============================================*/	
+
+		  	if(preg_match('/^[#\\=\\$\\;\\*\\_\\?\\¿\\!\\¡\\:\\.\\,\\0-9a-zA-Z]{1,}$/', $_POST["changePassword"])){
+			
+	  			/*=============================================
+				Encriptamos la contraseña
+				=============================================*/
+				
+				$crypt = crypt($_POST["changePassword"], '$2a$07$azybxcagssoy060696UOsdg23sdfhsd$');
+
+				/*=============================================
+				Actualizar contraseña en base de datos
+				=============================================*/
+
+				$url = "users?id=".$_SESSION["user"]->id_user."&nameId=id_user&token=".$_SESSION["user"]->token_user;
+				$method = "PUT";
+				$fields =  "password_user=".$crypt;
+				//$header = array();					
+
+				//$updatePassword = CurlController::request($url, $method, $fields, $header);		
+				$updatePassword = CurlController::request($url, $method, $fields);		
+
+				if($updatePassword->status == 200){	
+
+					echo '<script>
+								fncFormatInputs();
+								matPreloader("off");
+								fncSweetAlert("close", "", "");
+								fncSweetAlert("success", "Your new password has been Changed", "/perfiles");
+								
+							</script>
+						';
+
+					/*=============================================
+					Enviamos nueva contraseña al correo electrónico
+					=============================================*/							
+				
+					/*$name = $_SESSION["user"]->name_user;
+					$subject = "Change of password";
+					$email = $_SESSION["user"]->email_user;
+					$message = "You have changed your password";
+					$url = TemplateController::path()."account&login";
+
+					$sendEmail = TemplateController::sendEmail($name, $subject, $email, $message, $url);
+
+					if($sendEmail == "ok"){
+
+						echo '<script>
+
+								fncFormatInputs();
+
+								fncNotie(1, "Your new password has been successfully sent, please check your email inbox.");
+
+							</script>
+						';
+
+					}else{
+
+						echo '<script>
+
+								fncFormatInputs();
+
+								fncNotie(3, "'.$sendEmail.'");
+
+							</script>
+						';
+
+					}*/
+
+				}else{
+
+					echo '<script>
+
+						fncFormatInputs();
+						matPreloader("off");
+						fncSweetAlert("close", "", "");
+						fncNotie(3, "Error editing the password");
+
+					</script>';
+				}
+
+			}else{
+
+				echo '<script>
+
+					fncFormatInputs();
+
+					fncSweetAlert(
+						"error",
+						"Error in the syntax of the fields",
+						""
+					);
+
+				</script>';	
+
+			}
+
+
+		}
+
+	}
+
+	/*=============================================
+	Cambiar foto de perfil
+	=============================================*/
+
+	public function changePicture(){
+
+		/*=============================================
+		Validamos la sintaxis de los campos
+		=============================================*/	
+
+	  	if(isset($_FILES['changePicture']["tmp_name"]) && !empty($_FILES['changePicture']["tmp_name"])){
+
+			$fields = array(
+								
+									"file"=>$_FILES['changePicture']["tmp_name"],
+									"type"=>$_FILES["changePicture"]["type"],
+									"folder"=>"users/".$_SESSION["user"]->id_user,
+									"name"=>$_SESSION["user"]->id_user,
+									"width"=>300,
+									"height"=>300
+								);
+
+	
+	  		$saveImage = CurlController::requestFile($fields);
+
+	  		if($saveImage != "error"){
+
+	  			/*=============================================
+				Actualizar fotografía en base de datos
+				=============================================*/	
+
+				$url = "users?id=".$_SESSION["user"]->id_user."&nameId=id_user&token=".$_SESSION["user"]->token_user;
+				$method = "PUT";
+				$fields =  "picture_user=".$saveImage;
+				//$header = array();					
+
+				//$updatePicture = CurlController::request($url, $method, $fields, $header);	
+				$updatePicture = CurlController::request($url, $method, $fields);	
+
+				if($updatePicture->status == 200){	
+
+					$_SESSION["user"]->picture_user = $saveImage;
+					$_SESSION["admin"]->picture_user = $saveImage;
+
+					echo '<script>
+
+						fncFormatInputs();
+								matPreloader("off");
+								fncSweetAlert("close", "", "");
+								fncSweetAlert("success", "Your new picture has been changed successfully", "/perfiles");
+
+						
+					</script>';		
+
+				}else{
+					echo '<script>
+
+						fncFormatInputs();
+						matPreloader("off");
+						fncSweetAlert("close", "", "");
+						fncNotie(3, "Error updating the picture");
+
+
+					</script>';		
+
+				}				
+	  		}else{
+
+	  			echo '<script>
+
+					fncFormatInputs();
+
+					fncSweetAlert(
+						"error",
+						"An error occurred while creating the image, please try again",
+						""
+					);
+
+				</script>';	
+
+	  		}
+
+	  	}
 
 	}
 

@@ -24,7 +24,7 @@ require "views/modules/pvalidate.php";
                  
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $_SESSION["admin"]->name_user." ".$_SESSION["admin"]->ap_user ?></a>
+          <a href="perfiles" class="d-block"><?php echo $_SESSION["admin"]->name_user." ".$_SESSION["admin"]->ap_user ?></a>
         </div>
       </div>
 
