@@ -117,7 +117,7 @@ class TemplateController{
 	Función para enviar correos electrónicos
 	=============================================*/
 
-	static public function sendEmail($name, $subject, $email, $message, $url){
+	/*static public function sendEmail($name, $subject, $email, $message, $url){
 
 		date_default_timezone_set("America/Bogota");
 
@@ -165,6 +165,6 @@ class TemplateController{
 
 		}
 
-	}
+	}*/
 
 }

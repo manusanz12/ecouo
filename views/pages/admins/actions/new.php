@@ -222,7 +222,7 @@
 						
 						<figure class="text-center py-3">
 							
-							<img src="<?php echo TemplateController::srcImg() ?>views/img/users/default/default.png" class="img-fluid rounded-circle changePicture" style="width:150px">
+							<img src="<?php echo TemplateController::srcImg() ?>views/assets/img/users/default/default.png" class="img-fluid rounded-circle changePicture" style="width:150px">
 
 						</figure>
 

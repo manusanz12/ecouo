@@ -131,12 +131,12 @@ class AdminsController{
 
 		if(isset($_POST["matricula"])){
 
-			echo '<script>
+			/*echo '<script>
 
 				matPreloader("on");
 				fncSweetAlert("loading", "Loading...", "");
 
-			</script>';
+			</script>';*/
 
 			/*=============================================
 			Validamos la sintaxis de los campos
@@ -232,12 +232,17 @@ class AdminsController{
 								"file"=>$_FILES["picture"]["tmp_name"],
 								"type"=>$_FILES["picture"]["type"],
 								"folder"=>"users/".$id,
+								"size"=>$_FILES["picture"]["size"],
 								"name"=>$id,
 								"width"=>300,
 								"height"=>300
 							);
 
+									
+							
 							$picture = CurlController::requestFile($fields);
+							
+							
 
 							/*=============================================
 							Solicitud a la API
