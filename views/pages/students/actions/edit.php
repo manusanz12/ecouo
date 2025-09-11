@@ -213,7 +213,7 @@
 					<input 
 					type="password" 
 					class="form-control"
-					pattern="[#\\=\\$\\;\\*\\_\\?\\¿\\!\\¡\\:\\.\\,\\0-9a-zA-Z]{1,}"
+					pattern="/^[0-9a-zA-Z#=\$;\*_\?¿!¡:\.,@%&\+\-/]{8,}$/"
 					onchange="validateJS(event,'pass')" 
 					name="password"
 					placeholder="*******"
