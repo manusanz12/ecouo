@@ -76,7 +76,7 @@ require "views/modules/pvalidate.php";
                   <a href="administrators" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "administrators"): ?>active<?php endif ?>">
                     <i class="nav-icon fas fa-list"></i>
                     <p>
-                      Administrativos
+                      Administradores
                     </p>
                   </a>
                 </li>
@@ -88,7 +88,7 @@ require "views/modules/pvalidate.php";
                   <a href="teachers" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "teachers"): ?>active<?php endif ?>">
                     <i class="nav-icon fas fa-chalkboard"></i>
                     <p>
-                      Teachers
+                      Profesores
                     </p>
                   </a>
                 </li>
@@ -100,7 +100,7 @@ require "views/modules/pvalidate.php";
                   <a href="students" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "students"): ?>active<?php endif ?>">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
-                      Students
+                      Estudiantes
                     </p>
                   </a>
                 </li>
@@ -147,7 +147,7 @@ require "views/modules/pvalidate.php";
                             <a href="periods" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "periods"): ?>active<?php endif ?>">
                               <i class="nav-icon fas fa-clock"></i>
                               <p>
-                                Periods
+                                Periodos
                               </p>
                             </a>
                           </li>
@@ -171,7 +171,7 @@ require "views/modules/pvalidate.php";
                           <a href="/categories" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "categories"): ?>active<?php endif ?>">
                             <i class="nav-icon fas fa-list"></i>
                             <p>
-                              Categories
+                              Categorias
                             </p>
                           </a>
                         </li>
@@ -179,7 +179,7 @@ require "views/modules/pvalidate.php";
                           <a href="/noticies" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "noticies"): ?>active<?php endif ?>">
                             <i class="nav-icon fas fa-list"></i>
                             <p>
-                              News
+                              Noticias
                             </p>
                           </a>
                         </li>
@@ -187,7 +187,7 @@ require "views/modules/pvalidate.php";
                           <a href="/services" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "services"): ?>active<?php endif ?>">
                             <i class="nav-icon fas fa-list"></i>
                             <p>
-                              Services
+                              Servicios
                             </p>
                           </a>
                         </li>
