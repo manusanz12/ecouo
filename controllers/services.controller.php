@@ -11,12 +11,12 @@ class ServicesController{
 		if(isset($_POST["name-service"])){
 			
 
-			echo '<script>
+			/*echo '<script>
 
 				matPreloader("on");
 				fncSweetAlert("loading", "Loading...", "");
 
-			</script>';
+			</script>';*/
 
 			/*=============================================
 			Validamos los planteles
@@ -430,8 +430,6 @@ class ServicesController{
 
 					);
 					
-					
-
 
 					/*=============================================
 					Solicitud a la API
@@ -442,6 +440,7 @@ class ServicesController{
 					$fields = $data;
 
 					$response = CurlController::request($url,$method,$fields);
+					
 					
 					/*=============================================
 					Respuesta de la API

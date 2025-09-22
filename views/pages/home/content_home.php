@@ -18,14 +18,30 @@ $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results
 /*=============================================
 Traer Servicios academicos
 =============================================*/
+$url = "services?select=id_service";
+$method = "GET";
+$fields = array();
+$header = array();
+
+$dataService = CurlController::request($url, $method, $fields, $header);
 
 
-//$randomStart = rand(0, ($totalnews-3));
-$randomStart = 0;
+if($dataService->status == 200){
+
+    $totalService_Academi = $dataService->total;
+
+}else{
+
+    $totalService_Academi = 0;
+}
+
+
+$randomStart = rand(0, ($totalService_Academi-3));
+//$randomStart = 0;
 $tipo_EN="academia";
 $select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
 
-$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&orderMode=ASC&startAt=".$randomStart."&endAt=5&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
+$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&orderMode=ASC&startAt=".$randomStart."&endAt=2&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
 $method = "GET";
 $fields = array();
 $header = array();
@@ -37,13 +53,30 @@ $ServicesHSlider = CurlController::request($url, $method, $fields, $header)->res
 Traer Servicios administrativos
 =============================================*/
 
+$url = "services?select=id_service";
+$method = "GET";
+$fields = array();
+$header = array();
 
-//$randomStart = rand(0, ($totalnews-3));
-$randomStart = 0;
+$dataService = CurlController::request($url, $method, $fields, $header);
+
+
+if($dataService->status == 200){
+
+    $totalService_Admin = $dataService->total;
+
+}else{
+
+    $totalService_Admin = 0;
+}
+
+
+$randomStart = rand(0, ($totalService_Admin-3));
+//$randomStart = 0;
 $tipo_EN="administrativo";
 $select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
 
-$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&orderMode=ASC&startAt=".$randomStart."&endAt=5&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
+$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&orderMode=ASC&startAt=".$randomStart."&endAt=2&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
 $method = "GET";
 $fields = array();
 $header = array();
