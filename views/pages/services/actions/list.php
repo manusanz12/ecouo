@@ -61,15 +61,11 @@ if(isset($_GET["start"]) && isset($_GET["end"])){
         <th>Category</th>
         <th>Offer</th>
         <th>Description</th>
-        <th>Gallery</th>
         <th>Top Banner</th>
         <th>Default Banner</th>
         <th>Horizontal Slider</th>
         <th>Vertical Slider</th>
-        <th>Video</th>
         <th>Tags</th>
-        <th>Views</th>
-        <th>Reviews</th>
         <th>Date</th>
       </tr>
       </thead>
