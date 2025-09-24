@@ -18,7 +18,10 @@ $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results
 /*=============================================
 Traer Servicios academicos
 =============================================*/
-$url = "services?select=id_service";
+//$url = "services?select=id_service";
+$tipo_EN="academia";
+$select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
+$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
 $method = "GET";
 $fields = array();
 $header = array();
@@ -36,7 +39,7 @@ if($dataService->status == 200){
 }
 
 
-$randomStart = rand(0, ($totalService_Academi-3));
+$randomStart = rand(0, ($totalService_Academi-2));
 //$randomStart = 0;
 $tipo_EN="academia";
 $select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
@@ -48,12 +51,13 @@ $header = array();
 
 $ServicesHSlider = CurlController::request($url, $method, $fields, $header)->results;
 
-
 /*=============================================
 Traer Servicios administrativos
 =============================================*/
-
-$url = "services?select=id_service";
+//$url = "services?select=id_service";
+$tipo_EN="administrativo";
+$select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
+$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
 $method = "GET";
 $fields = array();
 $header = array();
@@ -71,7 +75,7 @@ if($dataService->status == 200){
 }
 
 
-$randomStart = rand(0, ($totalService_Admin-3));
+$randomStart = rand(0, ($totalService_Admin-2));
 //$randomStart = 0;
 $tipo_EN="administrativo";
 $select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
