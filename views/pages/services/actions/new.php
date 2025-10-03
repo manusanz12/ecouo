@@ -90,10 +90,8 @@
 		                required>
 
 		                    <option value="">Select Type</option>
-							<option value="alumno">alumno</option>
 							<option value="academia" >academia</option>
 							<option value="administrativo" >administrativo</option>
-							<option value="todos" >todos</option>
 		                      
 		                  
 

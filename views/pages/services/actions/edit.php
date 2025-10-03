@@ -145,8 +145,8 @@
 		                required>
 							<option value="">Select Type</option>
 							<option value="<?php echo $service->type_service ?>" selected><?php echo $service->type_service ?></option>
-							<option value="Evento">Evento</option>
-							<option value="Noticia" >Noticia</option>
+							<option value="academia">Académia</option>
+							<option value="administrativo" >Administrativo</option>
 		                    
 		                </select> 
 
