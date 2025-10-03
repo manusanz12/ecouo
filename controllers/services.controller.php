@@ -44,6 +44,32 @@ class ServicesController{
 			   
 			}
 
+			/*=============================================
+			Validamos los roles
+			=============================================*/
+
+			$rolespermitidos= array();
+			if (isset($_POST['roless'])) {
+				$opcionesSeleccionadas = $_POST['roless'];
+			
+				// Recorrer las opciones seleccionadas
+				foreach ($opcionesSeleccionadas as $opcion) {
+					//echo "Has seleccionado: " . htmlspecialchars($opcion) . "<br>";
+					array_push($rolespermitidos, $opcion);
+				}
+			}
+
+			if(count($rolespermitidos) > 0){
+
+				$rolespermitidos = json_encode($rolespermitidos);
+				
+
+			}else{
+
+				$rolespermitidos = null;
+
+			   
+			}
 
 			/*=============================================
 			Validamos la sintaxis de los campos
@@ -426,6 +452,7 @@ class ServicesController{
 						"vertical_slider_service"=>$saveImageVSlider,
 						"offer_service" => trim($_POST["date_offer"]),
 						"campus_service" => $plantelespermitidos,
+						"role_service" => $rolespermitidos,
 						"date_created_service" => date("Y-m-d")
 
 					);
@@ -539,6 +566,32 @@ class ServicesController{
 					}else{
 
 						$plantelespermitidos = null;
+
+					
+					}
+
+					/*=============================================
+					Validamos los roles
+					=============================================*/
+					$rolespermitidos= array();
+					if (isset($_POST['roless'])) {
+						$opcionesSeleccionadas = $_POST['roless'];
+					
+						// Recorrer las opciones seleccionadas
+						foreach ($opcionesSeleccionadas as $opcion) {
+							//echo "Has seleccionado: " . htmlspecialchars($opcion) . "<br>";
+							array_push($rolespermitidos, $opcion);
+						}
+					}
+
+					if(count($rolespermitidos) > 0){
+
+						$rolespermitidos = json_encode($rolespermitidos);
+						
+
+					}else{
+
+						$rolespermitidos = null;
 
 					
 					}
@@ -967,7 +1020,7 @@ class ServicesController{
 							Agrupamos la información 
 							=============================================*/		
 
-							$data = "name_service=".trim(TemplateController::capitalize($_POST["name-service"]))."&url_service=".trim($_POST["url-name_service"])."&link_service=".trim($_POST["link-name_service"])."&type_service=".trim($_POST["name-type"])."&id_category_service=".explode("_",$_POST["name-category"])[0]."&image_service=".$saveImageservice."&description_service=".urlencode(trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-service"]))))."&tags_service=".json_encode(explode(",",$_POST["tags-service"]))."&gallery_service=".json_encode($galleryservice)."&video_service=".$video_service."&top_banner_service=".json_encode($topBanner)."&default_banner_service=".$saveImageDefaultBanner."&horizontal_slider_service=".json_encode($hSlider)."&vertical_slider_service=".$saveImageVSlider."&offer_service=".$offer_service."&campus_service=".$plantelespermitidos;
+							$data = "name_service=".trim(TemplateController::capitalize($_POST["name-service"]))."&url_service=".trim($_POST["url-name_service"])."&link_service=".trim($_POST["link-name_service"])."&type_service=".trim($_POST["name-type"])."&id_category_service=".explode("_",$_POST["name-category"])[0]."&image_service=".$saveImageservice."&description_service=".urlencode(trim(TemplateController::htmlClean(preg_replace('/\r\n|\r|\n/','', $_POST["description-service"]))))."&tags_service=".json_encode(explode(",",$_POST["tags-service"]))."&gallery_service=".json_encode($galleryservice)."&video_service=".$video_service."&top_banner_service=".json_encode($topBanner)."&default_banner_service=".$saveImageDefaultBanner."&horizontal_slider_service=".json_encode($hSlider)."&vertical_slider_service=".$saveImageVSlider."&offer_service=".$offer_service."&campus_service=".$plantelespermitidos."&role_service=".$rolespermitidos;
 							//$data = "name_service=".trim(TemplateController::capitalize($_POST["name-service"]))."&gallery_service=".json_encode($galleryservice)."&offer_service=".$offer_service;
 							//echo '<pre>'; print_r($data); echo '</pre>';
 							//return;

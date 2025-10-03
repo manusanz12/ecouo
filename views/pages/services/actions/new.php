@@ -877,6 +877,43 @@
 
 					</div>
 
+				<!--=====================================
+                Rol que puede visualizar
+                ======================================-->
+
+				<?php 
+
+					$url = "roles?select=id_role,name_role,estatus_role&linkTo=estatus_role&equalTo=1";
+					$method = "GET";
+					$fields = array();
+
+					$roles = CurlController::request($url, $method, $fields)->results;
+
+					?>
+
+					<div class="form-group mt-2">
+
+						<label>Rol que puede visualizar</label>
+
+						<?php foreach ($roles as $key => $value2): 
+								
+							if ($value2->id_role!=10)
+								{	
+							?>	
+							
+								<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+									<input type="checkbox" class="custom-control-input" id="<?php echo $value2->id_role ?>" name="roless[]" value="<?php echo $value2->id_role ?>">
+									<label class="custom-control-label" for="<?php echo $value2->id_role ?>"><?php echo $value2->name_role ?></label>
+								</div>
+							
+							<?php
+								}
+							endforeach ?>
+
+
+
+					</div>
+
 			</div>
 		
 		</div>

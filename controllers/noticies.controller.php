@@ -43,6 +43,10 @@ class NoticiesController{
 			   
 			}
 
+			/*=============================================
+			Validamos los roles
+			=============================================*/
+
 			$rolespermitidos= array();
 			if (isset($_POST['roless'])) {
 				$opcionesSeleccionadas = $_POST['roless'];
