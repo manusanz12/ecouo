@@ -115,6 +115,11 @@ class RolesController{
 					array_push($modulesuser, ["D_Students"]);
 
 				}
+				if(isset($_POST["m_dashboard"])){	
+
+					array_push($modulesuser, ["D_Dashboard"]);
+
+				}
 
 
 				if(count($modulesuser) > 0){
@@ -327,6 +332,11 @@ class RolesController{
 			
 								array_push($modulesuser, ["D_Students"]);
 			
+							}
+							if(isset($_POST["m_dashboard"])){	
+
+								array_push($modulesuser, ["D_Dashboard"]);
+
 							}
 
 

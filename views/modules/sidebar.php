@@ -52,8 +52,9 @@ require "views/modules/pvalidate.php";
             $m_teachers=Pvalidate::Validatemodule("Students");
             $m_students=Pvalidate::Validatemodule("Teachers");
             $m_catalogue=Pvalidate::Validatemodule("Catalogue");
-            $m_dteachers=Pvalidate::Validatemodule("D_Teachers");
-            $m_dstudents=Pvalidate::Validatemodule("D_Students");
+            $m_canva=Pvalidate::Validatemodule("D_Dashboard");//para docentes y estudiantes
+            //$m_dteachers=Pvalidate::Validatemodule("D_Teachers");
+            //$m_dstudents=Pvalidate::Validatemodule("D_Students");
 
            
 
@@ -199,7 +200,10 @@ require "views/modules/pvalidate.php";
          
 
           
-          <?php if (isset($m_dteachers) || isset($m_catalogue)): ?>
+          <?php //if (isset($m_dteachers) || isset($m_catalogue)):
+                if (isset($m_canva)):
+            
+            ?>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-circle"></i>
