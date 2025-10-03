@@ -1026,6 +1026,8 @@
 										$r_activo = "checked";
 									}
 								}
+								if ($value2->id_role!=10)
+								{
 								?>	
 
 							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
@@ -1033,7 +1035,9 @@
 							<label class="custom-control-label" for="<?php echo $value2->id_role ?>"><?php echo $value2->name_role ?></label>
 							</div>
 							
-							<?php endforeach ?>
+							<?php 
+								}
+							endforeach ?>
 
 							
 

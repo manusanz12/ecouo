@@ -1017,7 +1017,7 @@
 							<label>Rol que pueden visualizar</label>
 
 							<?php foreach ($roles as $key => $value2): ?>	
-
+ 
 								<?php 
 								$r_activo = "";
 								foreach (json_decode($service->role_service, true) as $roless) {
@@ -1026,15 +1026,20 @@
 
 										$r_activo = "checked";
 									}
+
 								}
+								if ($value2->id_role!=10)
+								{
 								?>	
 
-							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-							<input type="checkbox" class="custom-control-input" id="<?php echo $value2->id_role ?>" name="roless[]" value="<?php echo $value2->id_role ?>" <?php echo $r_activo ?>>
-							<label class="custom-control-label" for="<?php echo $value2->id_role ?>"><?php echo $value2->name_role ?></label>
-							</div>
+									<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+									<input type="checkbox" class="custom-control-input" id="<?php echo $value2->id_role ?>" name="roless[]" value="<?php echo $value2->id_role ?>" <?php echo $r_activo ?>>
+									<label class="custom-control-label" for="<?php echo $value2->id_role ?>"><?php echo $value2->name_role ?></label>
+									</div>
 							
-							<?php endforeach ?>
+							<?php 
+								}
+							endforeach ?>
 
 							
 
