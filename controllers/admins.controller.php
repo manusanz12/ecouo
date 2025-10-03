@@ -60,6 +60,8 @@ class AdminsController{
 					$response2 = CurlController::request($url,$method,$fields);  
 					
 					$_SESSION["validates"] = $response2->results[0];
+
+
 					
 					/*=============================================
 					Validamos que si tenga rol administrativo
