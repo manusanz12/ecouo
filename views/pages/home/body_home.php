@@ -8,8 +8,11 @@
     	Home Banner
     	======================================-->  
 
-        <?php include "slider_home.php"; 
-              include "content_home.php";
+        <?php 
+        
+
+            include "slider_home.php"; 
+            include "content_home.php";
         
         
         ?>  

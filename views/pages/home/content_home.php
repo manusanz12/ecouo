@@ -2,13 +2,38 @@
 /*=============================================
 Traer Eventos aleatoriamente
 =============================================*/
+// Determinar límite de registros según cantidad total
+if ($totalnews <= 1) {
+    $startAt = 0;
+    $endAt = 1; // Solo un registro
+} else {
+    $randomStart = rand(0, ($totalnews-3));
+    $startAt = $randomStart;
+    $endAt = 2; // Rango normal
+}
 
 
-$randomStart = rand(0, ($totalnews-3));
 $tipo_EN="Evento";
 $select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie,type_noticie";
 
-$url = "relations?rel=noticies,categories&type=noticie,category&orderBy=id_noticie&orderMode=ASC&startAt=".$randomStart."&endAt=3&select=".$select."&linkTo=type_noticie&equalTo=".$tipo_EN;
+// Verificar rol del usuario
+if ($_SESSION['validates']->id_role == 10) {
+    // Administrador full: SIN filtro por campus
+    $url = "relations?rel=noticies,categories&type=noticie,category"
+         . "&orderBy=id_noticie&orderMode=ASC"
+         . "&startAt=" . $startAt . "&endAt=" . $endAt
+         . "&select=" . $select;
+} else {
+    // Otros usuarios: CON filtro por campus
+    $url = "relations?rel=noticies,categories&type=noticie,category"
+         . "&orderBy=id_noticie&orderMode=ASC&relike=likeit"
+         . "&startAt=".$startAt."&endAt=".$endAt
+         . "&select=".$select
+         . "&linkTo=type_noticie,campus_noticie"
+         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+}
+
+
 $method = "GET";
 $fields = array();
 $header = array();
@@ -16,17 +41,27 @@ $header = array();
 $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results;
 
 /*=============================================
-Traer Servicios academicos
+Traer el total de Servicios academicos
 =============================================*/
-//$url = "services?select=id_service";
+
 $tipo_EN="academia";
-$select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
-$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
+// Verificar rol del usuario
+if ($_SESSION['validates']->id_role == 10) {
+    // Administrador full: SIN filtro por campus
+    $url = "services?select=id_service&linkTo=type_service&equalTo=".$tipo_EN;
+} else {
+    // Otros usuarios: CON filtro por campus
+    $tipo_EN="academia";
+    $url="services?select=campus_service,type_service&linkTo=campus_service,type_service"
+          . "&search=" . $_SESSION['validates']->shortname_campus.",". $tipo_EN;
+}
 $method = "GET";
 $fields = array();
 $header = array();
 
 $dataService = CurlController::request($url, $method, $fields, $header);
+
+
 
 
 if($dataService->status == 200){
@@ -38,31 +73,65 @@ if($dataService->status == 200){
     $totalService_Academi = 0;
 }
 
+//echo '<pre>'; print_r($totalService_Academi); echo '</pre>';
+/*=============================================
+Traer Servicios academicos por el rol
+=============================================*/
 
-$randomStart = rand(0, ($totalService_Academi-2));
-//$randomStart = 0;
+
 $tipo_EN="academia";
 $select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
 
-$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&orderMode=ASC&startAt=".$randomStart."&endAt=2&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
+// Verificar rol del usuario
+if ($_SESSION['validates']->id_role == 10) {
+    // Administrador full: SIN filtro por campus
+    $url = "relations?rel=services,categories&type=service,category"
+         . "&orderBy=id_service&orderMode=ASC"
+         . "&startAt=" . $startAt . "&endAt=" . $endAt
+         . "&select=" . $select
+         . "&linkTo=type_service&equalTo=".$tipo_EN;
+         ;
+} else {
+    // Otros usuarios: CON filtro por campus
+    $url = "relations?rel=services,categories&type=service,category"
+         . "&orderBy=id_service&orderMode=ASC&relike=likeit"
+         . "&startAt=".$startAt."&endAt=".$endAt
+         . "&select=".$select
+         . "&linkTo=type_service,campus_service"
+         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+}
+
+
 $method = "GET";
 $fields = array();
 $header = array();
 
 $ServicesHSlider = CurlController::request($url, $method, $fields, $header)->results;
 
+//echo '<pre>hola'; print_r($ServicesHSlider); echo '</pre>';
+
 /*=============================================
-Traer Servicios administrativos
+Traer Total de Servicios administrativos
 =============================================*/
-//$url = "services?select=id_service";
+
 $tipo_EN="administrativo";
-$select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
-$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
+// Verificar rol del usuario
+if ($_SESSION['validates']->id_role == 10) {
+    // Administrador full: SIN filtro por campus
+    $url = "services?select=id_service&linkTo=type_service&equalTo=".$tipo_EN;
+} else {
+    // Otros usuarios: CON filtro por campus
+    $tipo_EN="academia";
+    $url="services?select=campus_service,type_service&linkTo=campus_service,type_service"
+          . "&search=" . $_SESSION['validates']->shortname_campus.",". $tipo_EN;
+}
 $method = "GET";
 $fields = array();
 $header = array();
 
 $dataService = CurlController::request($url, $method, $fields, $header);
+
+
 
 
 if($dataService->status == 200){
@@ -74,13 +143,33 @@ if($dataService->status == 200){
     $totalService_Admin = 0;
 }
 
+/*=============================================
+Traer Servicios administrativos por el rol
+=============================================*/
 
-$randomStart = rand(0, ($totalService_Admin-2));
-//$randomStart = 0;
+
 $tipo_EN="administrativo";
 $select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
 
-$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&orderMode=ASC&startAt=".$randomStart."&endAt=2&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
+// Verificar rol del usuario
+if ($_SESSION['validates']->id_role == 10) {
+    // Administrador full: SIN filtro por campus
+    $url = "relations?rel=services,categories&type=service,category"
+         . "&orderBy=id_service&orderMode=ASC"
+         . "&startAt=" . $startAt . "&endAt=" . $endAt
+         . "&select=" . $select
+         . "&linkTo=type_service&equalTo=".$tipo_EN;
+         ;
+} else {
+    // Otros usuarios: CON filtro por campus
+    $url = "relations?rel=services,categories&type=service,category"
+         . "&orderBy=id_service&orderMode=ASC&relike=likeit"
+         . "&startAt=".$startAt."&endAt=".$endAt
+         . "&select=".$select
+         . "&linkTo=type_service,campus_service"
+         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+}
+
 $method = "GET";
 $fields = array();
 $header = array();

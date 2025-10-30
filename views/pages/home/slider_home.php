@@ -4,10 +4,36 @@ Traer noticias aleatoriamente
 =============================================*/
 
 
-$randomStart = rand(0, ($totalnews-3));
 
+// Determinar límite de registros según cantidad total
+if ($totalnews <= 1) {
+    $startAt = 0;
+    $endAt = 1; // Solo un registro
+} else {
+    $randomStart = rand(0, ($totalnews-3));
+    $startAt = $randomStart;
+    $endAt = 2; // Rango normal
+}
+
+$tipo_EN="Noticia";
 $select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie,link_noticie,campus_noticie";
-$url = "relations?rel=noticies,categories&type=noticie,category&orderBy=id_noticie&orderMode=ASC&startAt=".$randomStart."&endAt=2&linkTo=campus_noticie&search=".$_SESSION['validates']->shortname_campus."&select=".$select;
+
+// Verificar rol del usuario
+if ($_SESSION['validates']->id_role == 10) {
+    // Administrador full: SIN filtro por campus
+    $url = "relations?rel=noticies,categories&type=noticie,category"
+         . "&orderBy=id_noticie&orderMode=ASC"
+         . "&startAt=" . $startAt . "&endAt=" . $endAt
+         . "&select=" . $select;
+} else {
+    // Otros usuarios: CON filtro por campus
+    $url = "relations?rel=noticies,categories&type=noticie,category"
+         . "&orderBy=id_noticie&orderMode=ASC&relike=likeit"
+         . "&startAt=".$startAt."&endAt=".$endAt
+         . "&select=".$select
+         . "&linkTo=type_noticie,campus_noticie"
+         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+}
 
 $method = "GET";
 $fields = array();
@@ -15,7 +41,7 @@ $header = array();
 
 $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results;
 
-
+//echo '<pre>'; print_r($url); echo '</pre>';
 
 ?>
     

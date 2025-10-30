@@ -5,12 +5,27 @@ Traer Servicios administrativos
 =============================================*/
 
 
-//$randomStart = rand(0, ($totalnews-3));
-$randomStart = 0;
+
 $tipo_EN="administrativo";
 $select = "url_category,horizontal_slider_service,url_service,image_service,default_banner_service,name_service,link_service,type_service";
 
-$url = "relations?rel=services,categories&type=service,category&orderBy=id_service&orderMode=ASC&startAt=".$randomStart."&endAt=5&select=".$select."&linkTo=type_service&equalTo=".$tipo_EN;
+// Verificar rol del usuario
+if ($_SESSION['validates']->id_role == 10) {
+    // Administrador full: SIN filtro por campus
+    $url = "relations?rel=services,categories&type=service,category"
+         . "&orderBy=id_service&orderMode=ASC"
+         . "&select=" . $select
+         . "&linkTo=type_service&equalTo=".$tipo_EN;
+         ;
+} else {
+    // Otros usuarios: CON filtro por campus
+    $url = "relations?rel=services,categories&type=service,category"
+         . "&orderBy=id_service&orderMode=ASC&relike=likeit"
+         . "&select=".$select
+         . "&linkTo=type_service,campus_service"
+         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+}
+
 $method = "GET";
 $fields = array();
 $header = array();
