@@ -112,7 +112,7 @@
 					type="email" 
 					class="form-control"
 					pattern="[.a-zA-Z0-9_]+([.][.a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}"
-					onchange="validateRepeat(event,'email','users','email_user')"
+					onchange="validateRepeat(event,'email','users','emailpersonal_user')"
 					name="email_personal"
 					required>
 
