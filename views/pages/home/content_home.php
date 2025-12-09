@@ -29,8 +29,8 @@ if ($_SESSION['validates']->id_role == 10) {
          . "&orderBy=id_noticie&orderMode=ASC&relike=likeit"
          . "&startAt=".$startAt."&endAt=".$endAt
          . "&select=".$select
-         . "&linkTo=type_noticie,campus_noticie"
-         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+         . "&linkTo=type_noticie,campus_noticie,role_noticie"
+         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus.",".$_SESSION['validates']->name_role;
 }
 
 
@@ -97,8 +97,8 @@ if ($_SESSION['validates']->id_role == 10) {
          . "&orderBy=id_service&orderMode=ASC&relike=likeit"
          . "&startAt=".$startAt."&endAt=".$endAt
          . "&select=".$select
-         . "&linkTo=type_service,campus_service"
-         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+         . "&linkTo=type_service,campus_service,role_service"
+         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus.",".$_SESSION['validates']->name_role;
 }
 
 
@@ -166,8 +166,8 @@ if ($_SESSION['validates']->id_role == 10) {
          . "&orderBy=id_service&orderMode=ASC&relike=likeit"
          . "&startAt=".$startAt."&endAt=".$endAt
          . "&select=".$select
-         . "&linkTo=type_service,campus_service"
-         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+         . "&linkTo=type_service,campus_service,role_service"
+         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus.",".$_SESSION['validates']->name_role;
 }
 
 $method = "GET";

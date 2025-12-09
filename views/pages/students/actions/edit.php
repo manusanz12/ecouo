@@ -15,8 +15,8 @@
 			$fields = array();
 
 			$response = CurlController::request($url,$method,$fields);
-			echo '<pre>'; print_r($url); echo '</pre>';
-			return;
+			//echo '<pre>'; print_r($url); echo '</pre>';
+			//return;
 			if($response->status == 200){
 
 				$admin = $response->results[0];

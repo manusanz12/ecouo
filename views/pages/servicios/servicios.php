@@ -20,8 +20,8 @@ if ($_SESSION['validates']->id_role == 10) {
     $url = "relations?rel=services,categories&type=service,category"
          . "&orderBy=id_service&orderMode=ASC&relike=likeit"
          . "&select=".$select
-         . "&linkTo=type_service,campus_service"
-         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+         . "&linkTo=type_service,campus_service,role_service"
+         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus.",".$_SESSION['validates']->name_role;
 }
 
 

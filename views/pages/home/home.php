@@ -3,8 +3,6 @@
 Traer el total de noticias
 =============================================*/
 
-
-
 // Verificar rol del usuario
 if ($_SESSION['validates']->id_role == 10) {
     // Administrador full: SIN filtro por campus
@@ -13,7 +11,7 @@ if ($_SESSION['validates']->id_role == 10) {
     // Otros usuarios: CON filtro por campus
     $tipo_EN="Noticia";
     $url="noticies?select=campus_noticie,type_noticie&linkTo=campus_noticie,type_noticie"
-          . "&search=" . $_SESSION['validates']->shortname_campus.",". $tipo_EN;
+          . "&search=" . $_SESSION['validates']->shortname_campus.",". $tipo_EN.",".$_SESSION['validates']->name_role;
 }
 $method = "GET";
 $fields = array();

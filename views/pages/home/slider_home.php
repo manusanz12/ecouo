@@ -16,7 +16,7 @@ if ($totalnews <= 1) {
 }
 
 $tipo_EN="Noticia";
-$select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie,link_noticie,campus_noticie";
+$select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie,link_noticie,campus_noticie,role_noticie";
 
 // Verificar rol del usuario
 if ($_SESSION['validates']->id_role == 10) {
@@ -31,8 +31,8 @@ if ($_SESSION['validates']->id_role == 10) {
          . "&orderBy=id_noticie&orderMode=ASC&relike=likeit"
          . "&startAt=".$startAt."&endAt=".$endAt
          . "&select=".$select
-         . "&linkTo=type_noticie,campus_noticie"
-         . "&search=".$tipo_EN .",".$_SESSION['validates']->shortname_campus;
+         . "&linkTo=type_noticie,campus_noticie,role_noticie"
+         . "&search=".$tipo_EN.",".$_SESSION['validates']->shortname_campus.",".$_SESSION['validates']->name_role;
 }
 
 $method = "GET";
@@ -41,6 +41,7 @@ $header = array();
 
 $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results;
 
+//echo '<pre>'; print_r($_SESSION['validates']->name_role); echo '</pre>';
 //echo '<pre>'; print_r($url); echo '</pre>';
 
 ?>

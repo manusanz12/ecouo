@@ -1021,7 +1021,7 @@
 								$r_activo = "";
 								foreach (json_decode($noticie->role_noticie, true) as $roless) {
 									
-									if($roless == $value2->id_role){
+									if($roless == $value2->name_role){
 
 										$r_activo = "checked";
 									}
@@ -1031,8 +1031,8 @@
 								?>	
 
 							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-							<input type="checkbox" class="custom-control-input" id="<?php echo $value2->id_role ?>" name="roless[]" value="<?php echo $value2->id_role ?>" <?php echo $r_activo ?>>
-							<label class="custom-control-label" for="<?php echo $value2->id_role ?>"><?php echo $value2->name_role ?></label>
+							<input type="checkbox" class="custom-control-input" id="<?php echo $value2->name_role ?>" name="roless[]" value="<?php echo $value2->name_role ?>" <?php echo $r_activo ?>>
+							<label class="custom-control-label" for="<?php echo $value2->name_role ?>"><?php echo $value2->name_role ?></label>
 							</div>
 							
 							<?php 

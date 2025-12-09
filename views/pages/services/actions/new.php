@@ -900,8 +900,8 @@
 							?>	
 							
 								<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-									<input type="checkbox" class="custom-control-input" id="<?php echo $value2->id_role ?>" name="roless[]" value="<?php echo $value2->id_role ?>">
-									<label class="custom-control-label" for="<?php echo $value2->id_role ?>"><?php echo $value2->name_role ?></label>
+									<input type="checkbox" class="custom-control-input" id="<?php echo $value2->name_role ?>" name="roless[]" value="<?php echo $value2->name_role ?>">
+									<label class="custom-control-label" for="<?php echo $value2->name_role ?>"><?php echo $value2->name_role ?></label>
 								</div>
 							
 							<?php
