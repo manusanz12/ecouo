@@ -53,6 +53,7 @@ require "views/modules/pvalidate.php";
             $m_students=Pvalidate::Validatemodule("Teachers");
             $m_catalogue=Pvalidate::Validatemodule("Catalogue");
             $m_canva=Pvalidate::Validatemodule("D_Dashboard");//para docentes y estudiantes
+            $m_aspirantes=Pvalidate::Validatemodule("Aspirantes");
             //$m_dteachers=Pvalidate::Validatemodule("D_Teachers");
             //$m_dstudents=Pvalidate::Validatemodule("D_Students");
 
@@ -102,6 +103,19 @@ require "views/modules/pvalidate.php";
                     <i class="nav-icon fas fa-users"></i>
                     <p>
                       Estudiantes
+                    </p>
+                  </a>
+                </li>
+
+          <?php endif ?>
+
+          <?php if (isset($m_aspirantes)): ?> 
+
+                <li class="nav-item">
+                  <a href="aspirantes" class="nav-link <?php if (!empty($routesArray) && $routesArray[1] == "aspirantes"): ?>active<?php endif ?>">
+                    <i class="nav-icon fas fa-calendar-check"></i>
+                    <p>
+                      Aspirantes
                     </p>
                   </a>
                 </li>

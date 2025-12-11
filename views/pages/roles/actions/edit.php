@@ -149,7 +149,7 @@
 						$m_teachers = ""; 
 						$m_catalogue = "";
 						$m_canva = "";  
-						//$m_dteachers = "";
+						$m_aspirantes = "";
 						//$m_dstudents = "";
 
 						if($roles->module_role != null){
@@ -194,12 +194,12 @@
 									$m_canva =  "checked";
 
 								}
-								/*if($value[0] == "D_Teachers"){
+								if($value[0] == "Aspirantes"){
 
-									$m_dteachers =  "checked";
+									$m_aspirantes =  "checked";
 
 								}
-								if($value[0] == "D_Students"){
+								/*if($value[0] == "D_Students"){
 
 									$m_dstudents =  "checked";
 
@@ -272,6 +272,11 @@
 							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
 							<input type="checkbox" class="custom-control-input" id="customDashboard" name="m_dashboard" <?php echo $m_canva ?>>
 							<label class="custom-control-label" for="customDashboard">Dashboard (Alumnos y Docentes)</label>
+							</div>
+
+							<div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+							<input type="checkbox" class="custom-control-input" id="customaspirantes" name="m_aspirantes" <?php echo $m_aspirantes ?>>
+							<label class="custom-control-label" for="customaspirantes">Aspirantes</label>
 							</div>
 
 							

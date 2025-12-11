@@ -279,6 +279,7 @@ if(!empty($urlParams[0])){
              $routesArray[1] == "periods" ||
              $routesArray[1] == "servicios" ||
              $routesArray[1] == "administrativos" ||
+             $routesArray[1] == "aspirantes" ||
              $routesArray[1] == "search" ||
              $routesArray[1] == "perfiles"): ?>
      
@@ -370,6 +371,7 @@ if(!empty($urlParams[0])){
          $routesArray[1] == "logout" ||
          $routesArray[1] == "servicios"||
          $routesArray[1] == "administrativos"||
+         $routesArray[1] == "aspirantes"||
          $routesArray[1] == "search" ||
          $routesArray[1] == "perfiles"){
           
