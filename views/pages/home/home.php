@@ -10,15 +10,16 @@ if ($_SESSION['validates']->id_role == 10) {
 } else {
     // Otros usuarios: CON filtro por campus
     $tipo_EN="Noticia";
-    $url="noticies?select=campus_noticie,type_noticie&linkTo=campus_noticie,type_noticie"
+    $url="noticies?select=campus_noticie,type_noticie&linkTo=campus_noticie,type_noticie,role_noticie"
           . "&search=" . $_SESSION['validates']->shortname_campus.",". $tipo_EN.",".$_SESSION['validates']->name_role;
 }
 $method = "GET";
 $fields = array();
 $header = array();
 
-$datanews = CurlController::request($url, $method, $fields, $header);
+//echo '<pre>hola'; print_r($url); echo '</pre>';
 
+$datanews = CurlController::request($url, $method, $fields, $header);
 
 //echo '<pre>hola'; print_r($datanews); echo '</pre>';
 

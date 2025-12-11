@@ -4,9 +4,8 @@ Traer noticias aleatoriamente
 =============================================*/
 
 
-
 // Determinar límite de registros según cantidad total
-if ($totalnews <= 1) {
+if ($totalnews <= 3) {
     $startAt = 0;
     $endAt = 1; // Solo un registro
 } else {
@@ -14,6 +13,7 @@ if ($totalnews <= 1) {
     $startAt = $randomStart;
     $endAt = 2; // Rango normal
 }
+
 
 $tipo_EN="Noticia";
 $select = "url_category,horizontal_slider_noticie,url_noticie,default_banner_noticie,name_noticie,link_noticie,campus_noticie,role_noticie";
@@ -34,15 +34,15 @@ if ($_SESSION['validates']->id_role == 10) {
          . "&linkTo=type_noticie,campus_noticie,role_noticie"
          . "&search=".$tipo_EN.",".$_SESSION['validates']->shortname_campus.",".$_SESSION['validates']->name_role;
 }
-
+//echo '<pre>'; print_r($url); echo '</pre>';
 $method = "GET";
 $fields = array();
 $header = array();
 
 $NewsHSlider = CurlController::request($url, $method, $fields, $header)->results;
 
-//echo '<pre>'; print_r($_SESSION['validates']->name_role); echo '</pre>';
-//echo '<pre>'; print_r($url); echo '</pre>';
+
+
 
 ?>
     
