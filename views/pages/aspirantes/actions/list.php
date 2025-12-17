@@ -61,6 +61,7 @@ if(isset($_GET["start"]) && isset($_GET["end"])){
         <th>Apellido Paterno</th>
         <th>Apellido Materno</th>
         <th>Correo Electrónico</th>
+        <th>Movil</th>
         <th>Plantel</th>
         <th>Origen</th>
         <th>Vendedor</th>

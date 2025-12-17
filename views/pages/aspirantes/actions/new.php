@@ -122,6 +122,29 @@
 				</div>
 
 				<!--=====================================
+				Movil
+                ======================================-->
+
+				<div class="form-group mt-2">
+					
+					<label>Teléfono movil</label>
+
+					<input 
+					type="text" 
+					class="form-control"
+					pattern="[-\\(\\)\\0-9 ]{1,}"
+					onchange="validateJS(event,'phone')"
+					name="phone"
+					required>
+
+					<div class="valid-feedback">Valido.</div>
+            		<div class="invalid-feedback">Por favor revisa el dato.</div>
+
+				</div>
+
+
+
+				<!--=====================================
 		        Campus
 		        ======================================-->
 

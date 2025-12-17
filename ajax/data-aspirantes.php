@@ -41,7 +41,7 @@ class DatatableController{
             El total de registros de la data
             =============================================*/
             
-            $url = "relations?rel=aspirantes,roles,campuses&type=aspirante,role,campus&select=id_aspirante,idcrm_aspirante,name_aspirante,ap_aspirante,am_aspirante,emailpersonal_aspirante,program_aspirante,id_role_aspirante,id_campus_aspirante,origen_aspirante,ejecutivo_aspirante,nivel_aspirante,modalidad_aspirante,campana_aspirante,etapacrm_aspirante,beca_aspirante,descuento_aspirante,importe_aspirante,fechareportado_aspirante,matricula_suni_aspirante,dv_suni_aspirante,estatus_aspirante,pipeline_aspirante,sexo_aspirante,date_created_aspirante,date_updated_aspirante,id_role,name_role,id_campus,name_campus&linkTo=date_created_aspirante&between1=".$_GET["between1"]."&between2=".$_GET["between2"]."&filterTo=id_role_aspirante&inTo=20";
+            $url = "relations?rel=aspirantes,roles,campuses&type=aspirante,role,campus&select=id_aspirante,idcrm_aspirante,name_aspirante,ap_aspirante,am_aspirante,emailpersonal_aspirante,movil_aspirante,program_aspirante,id_role_aspirante,id_campus_aspirante,origen_aspirante,ejecutivo_aspirante,nivel_aspirante,modalidad_aspirante,campana_aspirante,etapacrm_aspirante,beca_aspirante,descuento_aspirante,importe_aspirante,fechareportado_aspirante,matricula_suni_aspirante,dv_suni_aspirante,estatus_aspirante,pipeline_aspirante,sexo_aspirante,date_created_aspirante,date_updated_aspirante,id_role,name_role,id_campus,name_campus&linkTo=date_created_aspirante&between1=".$_GET["between1"]."&between2=".$_GET["between2"]."&filterTo=id_role_aspirante&inTo=20";
 
 			$method = "GET";
 			$fields = array();
@@ -67,13 +67,13 @@ class DatatableController{
            	Búsqueda de datos
             =============================================*/	
 
-            $select = "id_aspirante,idcrm_aspirante,name_aspirante,ap_aspirante,am_aspirante,emailpersonal_aspirante,program_aspirante,id_role_aspirante,id_campus_aspirante,origen_aspirante,ejecutivo_aspirante,nivel_aspirante,modalidad_aspirante,campana_aspirante,etapacrm_aspirante,beca_aspirante,descuento_aspirante,importe_aspirante,fechareportado_aspirante,matricula_suni_aspirante,dv_suni_aspirante,estatus_aspirante,pipeline_aspirante,sexo_aspirante,date_created_aspirante,date_updated_aspirante,id_role,name_role,id_campus,name_campus";
+            $select = "id_aspirante,idcrm_aspirante,name_aspirante,ap_aspirante,am_aspirante,emailpersonal_aspirante,movil_aspirante,program_aspirante,id_role_aspirante,id_campus_aspirante,origen_aspirante,ejecutivo_aspirante,nivel_aspirante,modalidad_aspirante,campana_aspirante,etapacrm_aspirante,beca_aspirante,descuento_aspirante,importe_aspirante,fechareportado_aspirante,matricula_suni_aspirante,dv_suni_aspirante,estatus_aspirante,pipeline_aspirante,sexo_aspirante,date_created_aspirante,date_updated_aspirante,id_role,name_role,id_campus,name_campus";
 
             if(!empty($_POST['search']['value'])){
 
             	if(preg_match('/^[0-9A-Za-zñÑáéíóú ]{1,}$/',$_POST['search']['value'])){// Validar que no coloquen caracteres alfanumericos
 
-	            	$linkTo = ["idcrm_aspirante","name_aspirante","ap_aspirante","am_aspirante","emailpersonal_aspirante","date_created_aspirante"];
+	            	$linkTo = ["idcrm_aspirante","name_aspirante","ap_aspirante","am_aspirante","emailpersonal_aspirante","movil_aspirante","date_created_aspirante"];
 
 	            	$search = str_replace(" ","_",$_POST['search']['value']);//reemplaza espacio al momento de buscar ajustando un guion bajo
 
@@ -209,6 +209,7 @@ class DatatableController{
 				$ap_aspirante = $value->ap_aspirante;	
 				$am_aspirante = $value->am_aspirante;	
             	$emailpersonal_aspirante = $value->emailpersonal_aspirante;
+				$movil_aspirante = $value->movil_aspirante;
 				$name_campus = $value->name_campus;
 				$origen_aspirante = $value->origen_aspirante;
 				$ejecutivo_aspirante = $value->ejecutivo_aspirante;
@@ -223,6 +224,7 @@ class DatatableController{
 					"ap_aspirante":"'.$ap_aspirante.'",
 					"am_aspirante":"'.$am_aspirante.'",
             		"emailpersonal_aspirante":"'.$emailpersonal_aspirante.'",
+					"movil_aspirante":"'.$movil_aspirante.'",
 					"name_campus":"'.$name_campus.'",
 					"origen_aspirante":"'.$origen_aspirante.'",
 					"ejecutivo_aspirante":"'.$ejecutivo_aspirante.'",

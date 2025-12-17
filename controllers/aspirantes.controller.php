@@ -38,6 +38,7 @@ class AspirantesController{
 					"ap_aspirante" => trim(TemplateController::capitalize($_POST["ap"])),
 					"am_aspirante" => trim(TemplateController::capitalize($_POST["am"])),
 					"emailpersonal_aspirante" => trim(strtolower($_POST["email_personal"])),
+					"movil_aspirante" => trim(strtolower($_POST["phone"])),
 					"id_role_aspirante" => "20",
 					"id_campus_aspirante" => trim($_POST["campus"]),
 					"origen_aspirante" => trim(TemplateController::capitalize($_POST["origen"])),
@@ -59,8 +60,8 @@ class AspirantesController{
 				$fields = $data;
 
 				$response = CurlController::request($url,$method,$fields);
-						
-
+			
+				
 				/*=============================================
 				Respuesta de la API
 				=============================================*/		
@@ -82,7 +83,7 @@ class AspirantesController{
 								fncFormatInputs();
 								matPreloader("off");
 								fncSweetAlert("close", "", "");
-								fncNotie(3, "Error saving image");
+								fncNotie(3, "Error saving record");
 
 							</script>';
 
@@ -123,7 +124,7 @@ class AspirantesController{
 
 			if($id == $_POST["idAspirantes"]){
 
-				$select = "id_aspirante,idcrm_aspirante,name_aspirante,ap_aspirante,am_aspirante,emailpersonal_aspirante,program_aspirante,id_role_aspirante,id_campus_aspirante,origen_aspirante,ejecutivo_aspirante,nivel_aspirante,modalidad_aspirante,campana_aspirante,etapacrm_aspirante,beca_aspirante,descuento_aspirante,importe_aspirante,fechareportado_aspirante,matricula_suni_aspirante,dv_suni_aspirante,estatus_aspirante,pipeline_aspirante,sexo_aspirante,date_created_aspirante,date_updated_aspirante";
+				$select = "id_aspirante,idcrm_aspirante,name_aspirante,ap_aspirante,am_aspirante,emailpersonal_aspirante,movil_aspirante,program_aspirante,id_role_aspirante,id_campus_aspirante,origen_aspirante,ejecutivo_aspirante,nivel_aspirante,modalidad_aspirante,campana_aspirante,etapacrm_aspirante,beca_aspirante,descuento_aspirante,importe_aspirante,fechareportado_aspirante,matricula_suni_aspirante,dv_suni_aspirante,estatus_aspirante,pipeline_aspirante,sexo_aspirante,date_created_aspirante,date_updated_aspirante";
 
 				$url = "aspirantes?select=".$select."&linkTo=id_aspirante&equalTo=".$id;
 				$method = "GET";
@@ -146,7 +147,7 @@ class AspirantesController{
 						Agrupamos la información 
 						=============================================*/		
 
-						$data = "name_aspirante=".trim(TemplateController::capitalize($_POST["name"]))."&ap_aspirante=".trim(TemplateController::capitalize($_POST["ap"]))."&am_aspirante=".trim(TemplateController::capitalize($_POST["am"]))."&emailpersonal_aspirante=".trim(strtolower($_POST["email_personal"]))."&id_campus_aspirante=".trim($_POST["campus"])."&origen_aspirante=".trim(TemplateController::capitalize($_POST["origen"]))."&ejecutivo_aspirante=".trim(TemplateController::capitalize($_POST["ejecutivo"]))."&etapacrm_aspirante=".trim(TemplateController::capitalize($_POST["etapa_crm"]))."&date_updated_aspirante=".date("Y-m-d H:i:s");
+						$data = "name_aspirante=".trim(TemplateController::capitalize($_POST["name"]))."&ap_aspirante=".trim(TemplateController::capitalize($_POST["ap"]))."&am_aspirante=".trim(TemplateController::capitalize($_POST["am"]))."&emailpersonal_aspirante=".trim(strtolower($_POST["email_personal"]))."&movil_aspirante=".trim(strtolower($_POST["phone"]))."&id_campus_aspirante=".trim($_POST["campus"])."&origen_aspirante=".trim(TemplateController::capitalize($_POST["origen"]))."&ejecutivo_aspirante=".trim(TemplateController::capitalize($_POST["ejecutivo"]))."&etapacrm_aspirante=".trim(TemplateController::capitalize($_POST["etapa_crm"]))."&date_updated_aspirante=".date("Y-m-d H:i:s");
 
 						//$data_user="address_datauser=".trim($_POST["address"])."&phone_datauser=".trim($_POST["phone"])."&movil_datauser=".trim($_POST["movil"]);
 						/*=============================================

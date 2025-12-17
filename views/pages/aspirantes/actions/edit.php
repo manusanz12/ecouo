@@ -8,7 +8,7 @@
 		
 		if($security[1] == $_SESSION["admin"]->token_user){
 
-			$select = "id_aspirante,idcrm_aspirante,name_aspirante,ap_aspirante,am_aspirante,emailpersonal_aspirante,program_aspirante,id_role_aspirante,id_campus_aspirante,origen_aspirante,ejecutivo_aspirante,nivel_aspirante,modalidad_aspirante,campana_aspirante,etapacrm_aspirante,beca_aspirante,descuento_aspirante,importe_aspirante,fechareportado_aspirante,matricula_suni_aspirante,dv_suni_aspirante,estatus_aspirante,pipeline_aspirante,sexo_aspirante,date_created_aspirante,date_updated_aspirante,id_role,name_role,id_campus,name_campus";
+			$select = "id_aspirante,idcrm_aspirante,name_aspirante,ap_aspirante,am_aspirante,emailpersonal_aspirante,movil_aspirante,program_aspirante,id_role_aspirante,id_campus_aspirante,origen_aspirante,ejecutivo_aspirante,nivel_aspirante,modalidad_aspirante,campana_aspirante,etapacrm_aspirante,beca_aspirante,descuento_aspirante,importe_aspirante,fechareportado_aspirante,matricula_suni_aspirante,dv_suni_aspirante,estatus_aspirante,pipeline_aspirante,sexo_aspirante,date_created_aspirante,date_updated_aspirante,id_role,name_role,id_campus,name_campus";
 
 			$url = "relations?rel=aspirantes,roles,campuses&type=aspirante,role,campus&select=".$select."&linkTo=id_aspirante&equalTo=".$security[0];
 			$method = "GET";
@@ -177,6 +177,36 @@
             		<div class="invalid-feedback">Por favor revisa el dato.</div>
 
 				</div>
+
+				<!--=====================================
+                Teléfono
+                ======================================-->
+
+                <div class="form-group mt-2 mb-5">
+					
+					<label>Teléfono movil</label>
+
+					<div class="input-group">
+
+						<!--<div class="input-group-append">
+							<span class="input-group-text dialCode">Aqui si se usa el odigo de area por país</span>
+						</div>-->
+
+						<input 
+						type="text" 
+						class="form-control"
+						pattern="[-\\(\\)\\0-9 ]{1,}"
+						onchange="validateJS(event,'phone')"
+						name="phone"
+						value="<?php echo $admin->movil_aspirante?>"
+						>
+
+					</div>
+
+					<div class="valid-feedback">Valido.</div>
+            		<div class="invalid-feedback">Por favor revisa el dato.</div>
+
+				</div>		
 
 				
 				<!--=====================================
